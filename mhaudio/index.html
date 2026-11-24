@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MH audio 様 ホームページ デザイン案（5案）</title>
+<style>
+:root{--ink:#1A2230;--sub:#5A6B7E;--line:#D3D6DC;--acc:#4C678E}
+*{box-sizing:border-box}body{margin:0;background:#F4F6F8;color:var(--ink);font-family:"Yu Gothic","游ゴシック","Hiragino Sans",sans-serif}
+header{max-width:1200px;margin:0 auto;padding:40px 20px 10px}
+h1{font-size:28px;margin:0 0 8px}p.lead{color:var(--sub);margin:0;line-height:1.7}
+.grid{max-width:1200px;margin:24px auto 60px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+a.card{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;color:inherit;text-decoration:none}
+a.card:hover{border-color:var(--acc)}
+.frame{position:relative;width:100%;aspect-ratio:1440/900;overflow:hidden;background:#eee}
+.frame iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.meta{padding:14px 16px 18px}.meta b{font-size:17px}.meta span{display:inline-block;margin-left:8px;font-size:12px;color:#fff;background:var(--acc);border-radius:20px;padding:2px 10px}
+.meta p{margin:6px 0 0;color:var(--sub);font-size:14px;line-height:1.6}
+footer{text-align:center;color:var(--sub);font-size:12px;padding:0 20px 40px}
+</style></head><body>
+<header><h1>MH audio 様　ホームページ デザイン案（5案）</h1>
+<p class="lead">トップページのデザイン案です。それぞれの絵を押すと、実際に動くページが開きます（スマホでも見られます）。<br>写真と文章は、現在の貴社ホームページに載っているものを使っています。読みものの題名などは掲載内容のイメージです。</p></header>
+<div class="grid">
+<a class="card" href="design-a.html"><div class="frame"><iframe src="design-a.html" loading="lazy" title="A案"></iframe></div><div class="meta"><b>A案　目次のある工房</b><span>素朴・昔ながら</span><p>左にいつも目次が出て、ページ全体が見渡せる形。生成りと柿渋色、明朝の縦書き。</p></div></a>
+<a class="card" href="design-b.html"><div class="frame"><iframe src="design-b.html" loading="lazy" title="B案"></iframe></div><div class="meta"><b>B案　客室の一台</b><span>格式・上質</span><p>ホテルの客室の写真を大きく使い、お店やホテルの方に向けた落ち着いた形。濃紺と真鍮色。</p></div></a>
+<a class="card" href="design-c.html"><div class="frame"><iframe src="design-c.html" loading="lazy" title="C案"></iframe></div><div class="meta"><b>C案　雑誌の特集号</b><span>編集的・話題性</span><p>雑誌の表紙と目次のような形。事例を「特集」の記事として読ませます。白・黒・朱の1色。</p></div></a>
+<a class="card" href="design-d.html"><div class="frame"><iframe src="design-d.html" loading="lazy" title="D案"></iframe></div><div class="meta"><b>D案　標本カタログ</b><span>精密・ミニマル</span><p>製品の小ささを寸法の線で見せる、カタログのような形。白地に青い線だけ。</p></div></a>
+<a class="card" href="design-e.html"><div class="frame"><iframe src="design-e.html" loading="lazy" title="E案"></iframe></div><div class="meta"><b>E案　音のある場所の地図</b><span>温かみ・物語</span><p>この音が流れているお店や宿を、地図と一覧で探せる形。深緑とクリーム。</p></div></a>
+</div>
+<footer>デザイン提案（株式会社hoshimi）／実際のサイトではありません</footer>
+<script>
+function fit(){document.querySelectorAll('.frame').forEach(f=>{f.querySelector('iframe').style.transform='scale('+(f.clientWidth/1440)+')'})}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>

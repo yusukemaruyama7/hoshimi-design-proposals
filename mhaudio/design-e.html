@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ja">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MH audio｜この音が流れている場所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#2F4A3A; --green-2:#3E5E4B; --green-soft:#DDE3D6;
+  --cream:#F6F0E1; --cream-2:#EFE6D0; --paper:#FBF8F0;
+  --terra:#C8714A; --terra-soft:#F0D7C6;
+  --ink:#2A2A26; --muted:#6B6A5F; --line:#E0D6BF;
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{word-break:keep-all;overflow-wrap:anywhere;line-height:1.45;margin:0;font-weight:700}
+p{margin:0;text-wrap:pretty}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--terra);letter-spacing:.08em}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--terra)}
+.sec{padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+.sec-head h2{font-size:38px;color:var(--green);margin-top:10px}
+.sec-head .lead{max-width:460px;color:var(--muted);font-size:15px}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:3px 11px;border-radius:999px;background:var(--green-soft);color:var(--green);white-space:nowrap}
+.chip.t{background:var(--terra-soft);color:#8E4527}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(246,240,225,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:70px;gap:24px}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--green)}
+.logo b{font-size:24px;font-weight:900;letter-spacing:.02em}
+.logo small{font-size:11px;color:var(--muted);white-space:nowrap}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
+nav a:hover{color:var(--terra)}
+nav .cta{background:var(--green);color:var(--cream);padding:9px 18px;border-radius:999px}
+nav .cta:hover{background:var(--terra);color:#fff}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 70px);max-height:900px}
+.hero-photo{position:relative;padding:22px 0 22px 22px}
+.hero-photo .ph{position:relative;height:100%;min-height:560px;border-radius:28px;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 35%}
+.hero-photo .pin{position:absolute;left:78.5%;top:19.5%;transform:translate(-50%,-50%)}
+.pin .ring{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 6px rgba(200,113,74,.45)}
+.pin .tag{position:absolute;right:38px;top:-4px;background:#fff;color:var(--green);font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.hero-photo .cap{position:absolute;left:22px;bottom:22px;right:22px;padding:18px 22px;background:linear-gradient(transparent,rgba(30,40,32,.72));border-radius:0 0 28px 28px;color:#fff}
+.cap .where{font-size:20px;font-weight:700}
+.cap .meta{font-size:13px;opacity:.9}
+.hero-text{padding:34px 56px 84px 52px;display:flex;flex-direction:column}
+.hero-text .kicker{font-size:15px;font-weight:700;color:var(--terra);letter-spacing:.06em}
+.hero-text h1{font-size:44px;color:var(--green);margin:4px 0 10px;font-weight:900;letter-spacing:.01em}
+.hero-text .sub{font-size:15px;color:var(--muted);max-width:520px}
+.map-card{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px 14px;flex:1;display:flex;flex-direction:column}
+.map-card .mc-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+.map-card .mc-head b{color:var(--green);font-size:15px}
+.mapsvg{width:100%;height:auto;display:block}
+.place-list{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px;font-size:13px}
+.place-list>div{display:grid;grid-template-columns:62px 1fr;align-items:baseline;gap:8px}
+.place-list h4{font-size:12px;color:var(--terra);font-weight:700}
+.place-list ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 4px}
+.place-list li{display:flex;gap:6px;align-items:baseline;cursor:pointer;border-radius:6px;padding:0 4px;line-height:1.75;white-space:nowrap}
+.place-list li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--green);transform:translateY(-1px)}
+.place-list li.on,.place-list li:hover{background:var(--terra-soft)}
+.place-list.side{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
+
+/* map svg styles */
+.land{fill:#E8E0C8;stroke:#D3C6A4;stroke-width:1.5}
+.land.n{fill:#E3E3C9}
+.land-label{font-size:13px;fill:#9A8E6C;font-weight:700;letter-spacing:.2em}
+.route{fill:none;stroke:var(--terra);stroke-width:1.6;stroke-dasharray:3 6;stroke-linecap:round;opacity:.7}
+.dot{cursor:pointer}
+.dot circle.c{fill:var(--green);stroke:#fff;stroke-width:2;transition:r .25s,fill .25s}
+.dot circle.h{fill:var(--terra);opacity:0;transition:opacity .25s}
+.dot text{font-size:11.5px;fill:var(--ink);font-weight:500;pointer-events:none}
+.dot.on circle.c,.dot:hover circle.c{fill:var(--terra);r:9}
+.dot.on circle.h,.dot:hover circle.h{opacity:.25}
+.dot.dim{opacity:.25}
+.home-mark rect{fill:var(--terra)}
+.home-mark text{font-size:11.5px;font-weight:700;fill:#8E4527}
+
+/* entrances */
+.entr{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.ent{position:relative;border-radius:24px;overflow:hidden;background:var(--paper);border:1px solid var(--line);display:grid;grid-template-rows:280px auto;text-decoration:none}
+.ent img{width:100%;height:100%;object-fit:cover}
+.ent .body{padding:28px 32px 30px}
+.ent .who{font-size:13px;color:var(--terra);font-weight:700}
+.ent h3{font-size:28px;color:var(--green);margin:4px 0 10px}
+.ent .tags{margin:14px 0 18px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.ent .go{font-weight:700;color:var(--green);display:inline-flex;gap:8px;align-items:center}
+.ent .go::after{content:"→";color:var(--terra)}
+.ent:hover h3{color:var(--terra)}
+
+/* reasons */
+.reasons{background:var(--green);color:var(--cream)}
+.reasons .sec-head h2{color:var(--cream)}
+.reasons .sec-head .lead{color:#C9D2C4}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.rs{background:rgba(246,240,225,.07);border:1px solid rgba(246,240,225,.18);border-radius:var(--r);padding:28px 24px 24px;display:flex;flex-direction:column}
+.rs .num{font-size:13px;color:var(--terra-soft);font-weight:700}
+.rs svg{width:46px;height:46px;margin:12px 0 14px;stroke:var(--terra-soft);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rs h3{font-size:21px;margin-bottom:10px}
+.rs p{font-size:14px;color:#D7DDD2}
+.rs .voice{margin-top:auto;padding-top:16px;border-top:1px dashed rgba(246,240,225,.25);font-size:13px;color:#F0D7C6}
+.rs .voice b{display:block;color:#fff;font-size:12px;margin-top:4px;font-weight:500;opacity:.85}
+
+/* cases */
+.cases-grid{display:grid;grid-template-columns:460px 1fr;gap:44px;align-items:start}
+.cases-map{position:sticky;top:92px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.cases-map .note{font-size:12px;color:var(--muted);margin-top:6px}
+.cases-map .filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.fbtn{font:inherit;font-size:13px;font-weight:700;border:1px solid var(--line);background:#fff;color:var(--green);padding:5px 14px;border-radius:999px;cursor:pointer}
+.fbtn.on{background:var(--green);color:var(--cream);border-color:var(--green)}
+.ind{margin-bottom:38px}
+.ind-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ind-h h3{font-size:22px;color:var(--green)}
+.ind-h .cnt{font-size:13px;color:var(--muted)}
+.ind-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,box-shadow .25s}
+.card.on{border-color:var(--terra);box-shadow:0 0 0 3px var(--terra-soft)}
+.card.hide{display:none}
+.card .img{aspect-ratio:16/10;overflow:hidden}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .cb{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .loc{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--terra);font-weight:700}
+.card .loc svg{width:14px;height:14px;fill:var(--terra)}
+.card h4{font-size:19px;color:var(--ink)}
+.card p{font-size:14px;color:var(--muted)}
+.card .prods{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px;align-items:center}
+.card .prods span.l{font-size:12px;color:var(--muted)}
+.card.text{background:transparent}
+.card.full{grid-column:1/-1}
+.card.wide{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr}
+.card.wide .img{aspect-ratio:auto;min-height:260px}
+.more-cases{margin-top:10px;font-size:14px;color:var(--muted);background:var(--cream-2);border-radius:var(--r);padding:18px 22px}
+
+/* awards */
+.awards{background:var(--paper)}
+.agrid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:22px}
+.aw{border:1px solid var(--line);border-radius:var(--r);padding:26px;background:var(--cream)}
+.aw .k{font-size:13px;color:var(--terra);font-weight:700}
+.aw h3{font-size:22px;color:var(--green);margin:6px 0 10px}
+.aw.big{grid-row:span 2;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.aw.big img{width:100%;height:300px;object-fit:cover}
+.aw.big .in{padding:24px 26px}
+.mags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.mags span{border:1px solid var(--green);color:var(--green);border-radius:8px;padding:4px 12px;font-size:14px;font-weight:700}
+.aw ul{margin:6px 0 0;padding-left:1.1em;font-size:15px}
+
+/* products */
+.pgroup{margin-bottom:46px}
+.pgroup h3{font-size:22px;color:var(--green);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.pgroup h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pr{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.pr .img{aspect-ratio:4/3;background:#fff;overflow:hidden}
+.pr .img img{width:100%;height:100%;object-fit:cover}
+.pr .in{padding:18px 20px 20px}
+.pr .name{font-size:22px;font-weight:900;color:var(--green);letter-spacing:.02em}
+.pr .kind{font-size:13px;color:var(--terra);font-weight:700}
+.pr p{font-size:14px;color:var(--muted);margin-top:6px}
+.pr .where{margin-top:12px;font-size:12px;color:var(--green);border-top:1px dashed var(--line);padding-top:10px}
+
+/* reading */
+.reading{background:var(--cream-2)}
+.rlist{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;border-top:2px solid var(--green)}
+.ra{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:20px 4px;border-bottom:1px solid var(--line);text-decoration:none}
+.ra .no{font-size:13px;color:var(--terra);font-weight:700}
+.ra h3{font-size:18px;font-weight:700;color:var(--ink)}
+.ra:hover h3{color:var(--terra)}
+.img-note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* maker */
+.maker-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.maker-photos{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.maker-photos img{border-radius:var(--r);width:100%;height:100%;object-fit:cover}
+.maker-photos .a{grid-row:span 2;aspect-ratio:3/4}
+.maker-photos .b,.maker-photos .c{aspect-ratio:4/3}
+.maker h2{font-size:36px;color:var(--green);margin:10px 0 18px}
+.maker p+p{margin-top:14px}
+.creed{margin-top:26px;display:grid;gap:10px}
+.creed div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-top:1px dashed var(--line);font-size:15px}
+.creed b{color:var(--terra)}
+
+/* shops */
+.shops-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.shop-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.shop-box h3{font-size:22px;color:var(--green);margin-bottom:14px}
+.shop{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-top:1px dashed var(--line)}
+.shop .pinb{width:28px;height:28px;border-radius:50%;background:var(--green);color:var(--cream);display:grid;place-items:center;font-size:13px;font-weight:700}
+.shop b{font-size:17px}
+.shop span{display:block;font-size:13px;color:var(--muted)}
+.furu{background:var(--terra);color:#fff;border-color:var(--terra)}
+.furu h3{color:#fff}
+.furu .town{display:flex;gap:10px;margin:14px 0}
+.furu .town span{background:#fff;color:#8E4527;font-weight:700;border-radius:12px;padding:12px 18px;font-size:17px}
+.furu p{font-size:13px;color:#FBE9DF;margin-top:10px}
+.furu-list{list-style:none;margin:0;padding:0}
+.furu-list li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px dashed rgba(255,255,255,.35);font-weight:700;font-size:15px}
+.furu-list small{font-weight:500;opacity:.85;white-space:nowrap}
+
+/* contact */
+.contact{background:var(--green);color:var(--cream)}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.contact h2{font-size:40px;color:var(--cream);margin:10px 0 16px}
+.contact .lead{color:#D7DDD2}
+.steps{margin-top:28px;display:grid;gap:12px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.step i{font-style:normal;width:44px;height:44px;border-radius:50%;background:var(--terra);display:grid;place-items:center;font-weight:900}
+.step b{display:block;font-size:17px}
+.step span{font-size:14px;color:#C9D2C4}
+.form{background:var(--cream);color:var(--ink);border-radius:24px;padding:30px}
+.form label{display:block;font-size:13px;font-weight:700;color:var(--green);margin:14px 0 6px}
+.form label:first-child{margin-top:0}
+.form input,.form textarea{width:100%;font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 14px}
+.form textarea{height:110px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px}
+.opts span.on{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.form .send{margin-top:20px;width:100%;border:0;background:var(--terra);color:#fff;font:inherit;font-weight:700;font-size:17px;padding:15px;border-radius:999px}
+.form .small{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* footer */
+footer{background:#24392D;color:#C9D2C4;padding:56px 0 100px;font-size:14px}
+.ft{display:grid;grid-template-columns:1.2fr 2fr;gap:40px}
+.ft .logo b{color:var(--cream)}
+.ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ft-cols h4{color:var(--cream);font-size:14px;margin-bottom:8px}
+.ft-cols ul{list-style:none;margin:0;padding:0;line-height:2.1}
+.ft-cols a{text-decoration:none}
+.copy{margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:12px}
+
+/* fixed: 場所から探す + 提案表示 */
+.findbar{position:fixed;right:22px;bottom:16px;z-index:50;display:flex;align-items:center;gap:6px;background:var(--green);color:var(--cream);padding:7px 8px 7px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.findbar .lb{font-size:13px;font-weight:700;margin-right:6px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.findbar .lb svg{width:15px;height:15px;fill:var(--terra-soft)}
+.findbar button{font:inherit;font-size:13px;font-weight:700;border:0;background:rgba(246,240,225,.12);color:var(--cream);padding:7px 15px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.findbar button.on,.findbar button:hover{background:var(--terra);color:#fff}
+.demo{position:fixed;left:14px;bottom:14px;z-index:49;background:rgba(255,255,255,.92);border:1px solid var(--line);color:#555;font-size:11px;line-height:1.5;padding:6px 10px;border-radius:8px}
+
+/* responsive */
+@media (max-width:1180px){
+  .hero-text{padding:36px 36px 30px}
+  .hero-text h1{font-size:40px}
+  nav ul{gap:16px}
+  .cases-grid{grid-template-columns:340px 1fr}
+  .rgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  body{font-size:15px}
+  footer{padding-bottom:150px}
+  .wrap{padding:0 16px}
+  .sec{padding:68px 0}
+  .sec-head{margin-bottom:28px}
+  .sec-head h2{font-size:28px}
+  .hd{height:auto;flex-direction:column;align-items:stretch;gap:0;padding:10px 16px 0}
+  .logo b{font-size:21px}
+  nav{overflow-x:auto;margin:0 -16px;padding:8px 16px 10px;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav ul{gap:18px}
+  nav .cta{padding:6px 14px}
+  html{scroll-padding-top:110px}
+  .hero{grid-template-columns:1fr;min-height:0;max-height:none}
+  .hero-photo{padding:12px 12px 0}
+  .hero-photo .ph{min-height:0;aspect-ratio:1/1;border-radius:22px}
+  .hero-photo .cap{left:12px;right:12px;bottom:0;border-radius:0 0 22px 22px;padding:14px 16px}
+  .cap .where{font-size:17px}
+  .cap .meta span{display:block}
+  .cap .meta .sep{display:none}
+  .pin .tag{font-size:12px}
+  .hero-text{padding:26px 16px 10px}
+  .hero-text h1{font-size:32px}
+  .place-list{font-size:12.5px}
+  .hero-photo .pin{left:76%}
+  .entr,.cards,.agrid,.maker-grid,.shops-grid,.ct-grid,.ft,.rlist,.cases-grid{grid-template-columns:1fr}
+  .ent{grid-template-rows:200px auto}
+  .ent .body{padding:22px}
+  .ent h3{font-size:23px}
+  .rgrid{grid-template-columns:1fr}
+  .cases-map{position:static}
+  .card.wide{display:flex}
+  .card.wide .img{aspect-ratio:16/10;min-height:0}
+  .aw.big{grid-row:auto}
+  .aw.big img{height:220px}
+  .pgrid{grid-template-columns:1fr 1fr;gap:12px}
+  .pr .name{font-size:18px}
+  .pr .in{padding:12px 14px 14px}
+  .pr p{font-size:13px}
+  .ra{grid-template-columns:44px 1fr;padding:16px 2px}
+  .ra .chip{grid-column:2;justify-self:start}
+  .ra h3{font-size:16px}
+  .maker h2,.contact h2{font-size:28px}
+  .creed div{grid-template-columns:1fr;gap:2px}
+  .map-card .mc-head span{display:none}
+  .furu .town{flex-wrap:wrap}
+  .furu .town span{white-space:nowrap;font-size:15px;padding:10px 14px}
+  .furu-list li{flex-direction:column;gap:0}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .findbar{left:12px;right:12px;transform:none;bottom:10px;justify-content:space-between;padding:6px 6px 6px 14px}
+  .findbar .lb{margin-right:0}
+  .findbar{flex-wrap:nowrap}
+  .findbar button{padding:6px 12px;font-size:12.5px}
+  .demo{left:12px;bottom:66px;font-size:10px}
+}
+@media (max-width:420px){
+  .findbar .lb span{display:none}
+  .pgrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. header -->
+<header data-sec="header">
+  <div class="wrap hd">
+    <a class="logo" href="#top"><b>MH audio</b><small>長野県富士見町の小さなオーディオ工房</small></a>
+    <nav aria-label="メニュー">
+      <ul>
+        <li><a href="#cases">導入している場所</a></li>
+        <li><a href="#reasons">選ばれる理由</a></li>
+        <li><a href="#products">製品</a></li>
+        <li><a href="#reading">読みもの</a></li>
+        <li><a href="#maker">工房について</a></li>
+        <li><a href="#shops">取扱店</a></li>
+        <li><a class="cta" href="#contact">まずはご相談</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- 2. hero -->
+<section class="hero" id="top" data-sec="hero">
+  <div class="hero-photo">
+    <div class="ph">
+      <img src="img/tarot_04.jpg" alt="CAFÉ Tarotの店内。天井のレールにスピーカーWAONが取り付けられている">
+      <div class="pin"><div class="ring"></div><div class="tag">ここに WAON</div></div>
+      <div class="cap">
+        <div class="where">CAFÉ Tarot（カフェタロー）様</div>
+        <div class="meta"><span>東京・浅草橋</span><span class="sep">｜</span><span>スピーカー WAON ＋ 真空管アンプ UA-1</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-text">
+    <div class="kicker">世界最小の本格オーディオ</div>
+    <h1>この音が<br>流れている場所。</h1>
+    <p class="sub">信州の小さな工房でつくった、CDジャケットほどのスピーカー。<br>ホテルの客室、酒蔵、カフェ、ラジオ局で、<wbr>今日も静かに鳴っています。</p>
+
+    <div class="map-card">
+      <div class="mc-head"><b>導入している場所の地図</b><span>点にふれると名前が光ります</span></div>
+      <div class="map-slot" data-map="hero"></div>
+      <div class="place-list" id="heroList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. entrances -->
+<section class="sec" data-sec="entrances" id="entrances">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">どこで鳴らしますか</span><h2>あなたの場所から選ぶ</h2></div>
+      <p class="lead">お店やホテルで使う方と、ご自宅や机の上で楽しむ方。<br>入口を2つに分けて、合う組み合わせをご案内します。</p>
+    </div>
+    <div class="entr">
+      <a class="ent" href="#cases">
+        <img src="img/manruyama_03.jpg" alt="和食レストラン万る山の客席">
+        <div class="body">
+          <div class="who">お店・ホテル・事務所・放送局の方</div>
+          <h3>店舗・ホテルで使う</h3>
+          <p>小さな音でも部屋の隅まで届き、お客様の会話を邪魔しない。天井のレールや梁にも、さりげなく取り付けられます。</p>
+          <div class="tags"><span class="chip">ホテルの客室</span><span class="chip">カフェ・飲食店</span><span class="chip">売り場のBGM</span><span class="chip">ロビー・受付</span></div>
+          <span class="go">導入している場所を見る</span>
+        </div>
+      </a>
+      <a class="ent" href="#products">
+        <img src="img/da1_07.jpg" alt="森に面したベランダのテーブルに置いたWAONとDA-1">
+        <div class="body">
+          <div class="who">個人のお客様</div>
+          <h3>ご自宅・デスクで楽しむ</h3>
+          <p>パソコンの横、テレビの横、旅先のテーブルにも。スピーカーとアンプの2つだけで、本物の音が始まります。</p>
+          <div class="tags"><span class="chip t">机の上で</span><span class="chip t">リビングで</span><span class="chip t">ヘッドホンで</span><span class="chip t">ふるさと納税で</span></div>
+          <span class="go">製品と組み合わせを見る</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. reasons -->
+<section class="sec reasons" data-sec="reasons" id="reasons">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow" style="color:#F0D7C6">選ばれる理由</span><h2>小さいのに、<br>お店で選ばれる理由</h2></div>
+      <p class="lead">「大きく複雑なものが良い音がする…本当でしょうか？」<br>導入した場所の言葉といっしょに、4つの理由をご紹介します。</p>
+    </div>
+    <div class="rgrid">
+      <div class="rs">
+        <div class="num">理由 1</div>
+        <svg viewBox="0 0 48 48"><path d="M8 20v8h7l9 8V12l-9 8z"/><path d="M31 18c2 2 2 10 0 12M36 14c4 5 4 15 0 20"/></svg>
+        <h3>大音量でなくても<br>よく聴こえる</h3>
+        <p>音が空間にしみ込むように広がるので、小さな音量でも部屋のどこでもはっきり聴こえます。</p>
+        <div class="voice">小音量でも部屋のどこでもクリアに聴こえる<b>― かたくらシルクホテル様（全9室）</b></div>
+      </div>
+      <div class="rs">
+        <div class="num">理由 2</div>
+        <svg viewBox="0 0 48 48"><path d="M6 14h22v14H16l-6 5v-5H6z"/><path d="M32 20h10v12h-3v4l-5-4h-8v-3"/></svg>
+        <h3>会話を<br>邪魔しない</h3>
+        <p>声や楽器を素直に伝え、耳に刺さらない音。接客や食事の会話の中でも、BGMがそっと寄り添います。</p>
+        <div class="voice">小さな音でもちゃんと聴こえ、会話の邪魔にならぬよう<b>― 宮坂醸造「セラ真澄」様</b></div>
+      </div>
+      <div class="rs">
+        <div class="num">理由 3</div>
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l7 5"/></svg>
+        <h3>一日聴いても<br>疲れない</h3>
+        <p>営業中ずっと流していても、聴き疲れしにくい自然な響き。働く人にもやさしい音です。</p>
+        <div class="voice">ロビーとオフィスの放送モニターとして毎日<b>― ベイエフエム「bayfm78」様</b></div>
+      </div>
+      <div class="rs">
+        <div class="num">理由 4</div>
+        <svg viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="28" rx="3"/><circle cx="24" cy="24" r="8"/></svg>
+        <h3>小さくて<br>場所を取らない</h3>
+        <p>CDジャケットほどの木の箱。木製で軽く、レールや梁に付けても建物に負担をかけません。</p>
+        <div class="voice">客席の上のレールと受付カウンターに1組ずつ<b>― 和食レストラン「万る山」様</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. cases -->
+<section class="sec" data-sec="cases" id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">お客様の事例</span><h2>音のある場所を、<br>業種から・地図から</h2></div>
+      <p class="lead">業務で使っていただいている16件のうち、主な11か所です。地図の点とカードはつながっています。</p>
+    </div>
+    <div class="cases-grid">
+      <aside class="cases-map">
+        <div class="filter" id="caseFilter">
+          <button class="fbtn on" data-area="all">すべて</button>
+          <button class="fbtn" data-area="nagano">長野</button>
+          <button class="fbtn" data-area="tokyo">東京</button>
+          <button class="fbtn" data-area="chiba">千葉</button>
+        </div>
+        <div class="map-slot" data-map="cases"></div>
+        <p class="note">地図は場所の並びを示すイメージです（縮尺は正確ではありません）。</p>
+        <div class="place-list side" id="sideList"></div>
+      </aside>
+
+      <div>
+        <div class="ind">
+          <div class="ind-h"><h3>ホテル・宿</h3><span class="cnt">2か所</span></div>
+          <div class="cards">
+            <article class="card wide" data-place="katakura" data-area="nagano">
+              <div class="img"><img src="img/katakura_03.jpg" alt="かたくらシルクホテルの客室"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>長野・諏訪市</div>
+                <h4>かたくらシルクホテル様</h4>
+                <p>全9室すべてに導入。部屋ごとのインテリアに合わせて、WAONの色とアンプの種類を選びました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">UA-1</span><span class="chip">DA-1</span></div>
+              </div>
+            </article>
+            <article class="card text full" data-place="sunpika" data-area="tokyo">
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>東京都内</div>
+                <h4>SUNPIKA TOKYO様</h4>
+                <p>東京の小さな隠れ宿。アートな空間で、超小型アンプとWAONを使っていただいています。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">DA-1</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ind">
+          <div class="ind-h"><h3>カフェ・飲食店</h3><span class="cnt">3か所</span></div>
+          <div class="cards">
+            <article class="card" data-place="tarot" data-area="tokyo">
+              <div class="img"><img src="img/tarot_05.jpg" alt="CAFÉ Tarotの店内"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>東京・浅草橋</div>
+                <h4>CAFÉ Tarot（カフェタロー）様</h4>
+                <p>東京タロット美術館のミュージアムカフェ。美術館に続いてカフェでも使っていただいています。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">UA-1</span></div>
+              </div>
+            </article>
+            <article class="card" data-place="manruyama" data-area="nagano">
+              <div class="img"><img src="img/manruyama_02.jpg" alt="万る山の古民家の店内"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>長野・豊科</div>
+                <h4>和食レストラン「万る山」様</h4>
+                <p>築200年の本棟造りの古民家。客席の上と受付に1組ずつ、開店の準備段階からご相談いただきました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">DA-1</span></div>
+              </div>
+            </article>
+            <article class="card text full" data-place="poltrone" data-area="tokyo">
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>東京・北千住</div>
+                <h4>イル・ポルトローネ様</h4>
+                <p>本場で腕を磨いたシェフのイタリアンバール。取り付けた大工さんも気に入り、もう1組ご注文いただきました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ind">
+          <div class="ind-h"><h3>菓子・パン</h3><span class="cnt">2か所</span></div>
+          <div class="cards">
+            <article class="card text" data-place="quatre" data-area="nagano">
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>長野・富士見町</div>
+                <h4>菓子工房 キャトル・セゾン様</h4>
+                <p>工房と同じ富士見町の洋菓子店。お店と2022年にできた新しい工房に設置しました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">UA-1</span><span class="chip">DA-1</span></div>
+              </div>
+            </article>
+            <article class="card text" data-place="taiyo" data-area="nagano">
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>長野・諏訪市</div>
+                <h4>太養パン様</h4>
+                <p>100年前に諏訪で始まった老舗のパン屋さん。お店の改装に合わせて導入いただきました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ind">
+          <div class="ind-h"><h3>書店・美術館・酒蔵</h3><span class="cnt">3か所</span></div>
+          <div class="cards">
+            <article class="card" data-place="tsutaya" data-area="tokyo">
+              <div class="img"><img src="img/tsutaya_07.jpg" alt="六本木蔦屋書店の売り場"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>東京・六本木</div>
+                <h4>六本木蔦屋書店様</h4>
+                <p>1階の売り場とスターバックスの店内音響に。改装では、5年使ったWAONを点検して黒に塗り替えました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span></div>
+              </div>
+            </article>
+            <article class="card" data-place="masumi" data-area="nagano">
+              <div class="img"><img src="img/masumi_05.jpg" alt="セラ真澄の店内"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>長野・諏訪市</div>
+                <h4>宮坂醸造「セラ真澄」様</h4>
+                <p>大きな梁と漆喰の壁の蔵元ショップ。店内の塗料と同じ色でWAONを仕上げ、4本を設置しています。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span></div>
+              </div>
+            </article>
+            <article class="card text full" data-place="museum" data-area="tokyo">
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>東京・浅草橋</div>
+                <h4>東京タロット美術館様</h4>
+                <p>美術館の館内の音響に、WAONと小型の真空管アンプを選んでいただきました。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span><span class="chip">UA-1</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="ind">
+          <div class="ind-h"><h3>放送局</h3><span class="cnt">1か所</span></div>
+          <div class="cards">
+            <article class="card wide" data-place="bayfm" data-area="chiba">
+              <div class="img"><img src="img/bayfm_02.jpg" alt="ベイエフエムのロビーに付けたWAON"></div>
+              <div class="cb">
+                <div class="loc"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg>千葉・幕張新都心</div>
+                <h4>ベイエフエム「bayfm78」様</h4>
+                <p>ラジオ局の本社。エントランスのロビーとオフィスで、放送を聴くためのモニターとして使われています。</p>
+                <div class="prods"><span class="l">使っている製品</span><span class="chip">WAON</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <p class="more-cases">このほか、代官山のアパレル店、名古屋のセレクトショップ、立体音響の制作会社、蔵元でのコンサートなどでも使っていただいています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. awards -->
+<section class="sec awards" data-sec="awards" id="awards">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">評価・実績</span><h2>音を知る人と、<br>雑誌が選んだ音</h2></div>
+      <p class="lead">受賞、雑誌での紹介、ご愛用の方、試聴できるお店。ひとつにまとめました。</p>
+    </div>
+    <div class="agrid">
+      <div class="aw big">
+        <img src="img/ha11_02.jpg" alt="ヘッドホンアンプHA-11">
+        <div class="in">
+          <div class="k">受賞</div>
+          <h3>オーディオ銘機賞2014</h3>
+          <p>ヘッドホンアンプ HA-11 が受賞しました。信州の小さな工房で、一台ずつ手で仕上げたアンプです。</p>
+        </div>
+      </div>
+      <div class="aw">
+        <div class="k">雑誌に掲載</div>
+        <h3>4誌で紹介されました</h3>
+        <div class="mags"><span>レコード芸術</span><span>Mac Fan</span><span>Pen＋</span><span>ステレオ時代</span></div>
+      </div>
+      <div class="aw">
+        <div class="k">ご愛用の方</div>
+        <h3>指揮者 小林研一郎様</h3>
+        <p>蓼科の小林音楽研究所で使っていただいています（使用先一覧より）。</p>
+      </div>
+      <div class="aw">
+        <div class="k">取扱店</div>
+        <h3>3つのお店で展示・販売</h3>
+        <ul><li>銀座 山野楽器 本店</li><li>代官山蔦屋書店</li><li>二子玉川 蔦屋家電</li></ul>
+      </div>
+      <div class="aw" style="padding:0;overflow:hidden">
+        <img src="img/media_01.jpg" alt="雑誌に掲載されたMH audioの記事" style="width:100%;height:100%;object-fit:cover;min-height:190px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. products -->
+<section class="sec" data-sec="products" id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">製品</span><h2>スピーカーとアンプ、<br>2つで始まる</h2></div>
+      <p class="lead">どの製品にも「この場所で使われています」を添えました。お店で使われている音を、そのままご自宅へ。</p>
+    </div>
+    <div class="pgroup">
+      <h3>スピーカー</h3>
+      <div class="pgrid">
+        <div class="pr">
+          <div class="img"><img src="img/waon_10.jpg" alt="スピーカーWAON"></div>
+          <div class="in"><div class="kind">木の小型スピーカー</div><div class="name">WAON（和音）</div>
+            <p>CDジャケットほどの木の箱。茶色の部分は柿渋を10回以上重ねて仕上げています。</p>
+            <div class="where">使われている場所：ホテル・カフェ・酒蔵・ラジオ局ほか</div></div>
+        </div>
+        <div class="pr">
+          <div class="img"><img src="img/waon_14.jpg" alt="WAONの木のバリエーション"></div>
+          <div class="in"><div class="kind">素材ちがいのWAON</div><div class="name">WAON-take／WAON-wn</div>
+            <p>竹（take）とウォールナット（wn）の箱。お部屋の家具の色に合わせて選べます。</p>
+            <div class="where">おすすめ：木の家具の多いリビング・書斎</div></div>
+        </div>
+        <div class="pr">
+          <div class="img"><img src="img/kion_03.jpg" alt="スピーカーKION"></div>
+          <div class="in"><div class="kind">陶器の超小型スピーカー</div><div class="name">KION（輝音）</div>
+            <p>手のひらに乗る陶器のボディ。デスクやカウンター、旅先でも使えます。</p>
+            <div class="where">おすすめ：パソコンの横・カウンターの上</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgroup">
+      <h3>アンプ・ヘッドホンアンプ</h3>
+      <div class="pgrid">
+        <div class="pr">
+          <div class="img"><img src="img/ua1_10.jpg" alt="手のひらに乗る真空管アンプUA-1"></div>
+          <div class="in"><div class="kind">小型の真空管ハイブリッドアンプ</div><div class="name">UA-1</div>
+            <p>大きく重い真空管アンプの良さを、手のひらのサイズに。毎日つかえる真空管の音です。</p>
+            <div class="where">使われている場所：かたくらシルクホテル様・CAFÉ Tarot様</div></div>
+        </div>
+        <div class="pr">
+          <div class="img"><img src="img/da1_03.jpg" alt="デジタルアンプDA-1"></div>
+          <div class="in"><div class="kind">手のひらサイズのデジタルアンプ</div><div class="name">DA-1</div>
+            <p>スマホより小さい置き場所で、出力10W＋10W。黒と銀の2色です。</p>
+            <div class="where">使われている場所：万る山様・SUNPIKA TOKYO様</div></div>
+        </div>
+        <div class="pr">
+          <div class="img"><img src="img/ha11_05.jpg" alt="ヘッドホンアンプHA-11"></div>
+          <div class="in"><div class="kind">ヘッドホンアンプ</div><div class="name">HA-11／HA-1</div>
+            <p>HA-11はオーディオ銘機賞2014受賞。HA-1は電池で動く持ち歩けるヘッドホンアンプです。</p>
+            <div class="where">おすすめ：夜の書斎・移動中</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. reading -->
+<section class="sec reading" data-sec="reading" id="reading">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">読みもの</span><h2>場所ごとの、<br>音の選び方</h2></div>
+      <p class="lead">お店、ご自宅、ホテル。置く場所から考える、オーディオの読みものです。</p>
+    </div>
+    <div class="rlist">
+      <a class="ra" href="#reading"><span class="no">01</span><h3>店舗のBGMスピーカーの選び方：<wbr>会話を邪魔しない音とは</h3><span class="chip">お店</span></a>
+      <a class="ra" href="#reading"><span class="no">02</span><h3>カフェに合うスピーカー：<wbr>小さくても店内に届く理由</h3><span class="chip">お店</span></a>
+      <a class="ra" href="#reading"><span class="no">03</span><h3>デスクトップオーディオの始め方：<wbr>スピーカーとアンプだけでいい</h3><span class="chip t">ご自宅</span></a>
+      <a class="ra" href="#reading"><span class="no">04</span><h3>木製スピーカーの音は<wbr>なぜ柔らかいのか</h3><span class="chip t">ご自宅</span></a>
+      <a class="ra" href="#reading"><span class="no">05</span><h3>小型の真空管アンプは寿命が短い？<wbr>よくある心配に答えます</h3><span class="chip t">ご自宅</span></a>
+      <a class="ra" href="#reading"><span class="no">06</span><h3>ホテルの客室に置くオーディオ：<wbr>テレビの横に置ける本物の音</h3><span class="chip">ホテル</span></a>
+    </div>
+    <p class="img-note">掲載内容イメージ</p>
+  </div>
+</section>
+
+<!-- 9. maker -->
+<section class="sec maker" data-sec="maker" id="maker">
+  <div class="wrap maker-grid">
+    <div class="maker-photos">
+      <img class="a" src="img/da1_11.jpg" alt="草原のテントの前に置いたWAON" style="object-position:50% 60%">
+      <img class="b" src="img/about_04.jpg" alt="工房に並ぶWAONとアンプ">
+      <img class="c" src="img/ua1_12.jpg" alt="UA-1の金属部品">
+    </div>
+    <div>
+      <span class="eyebrow">作り手・工房</span>
+      <h2>八ヶ岳のふもと、<br>富士見町の工房から</h2>
+      <p>MH audioは、長野県富士見町の小さな工房です。代表の星野が、設計から仕上げ、お届けまでをほぼ一人で手がけています。</p>
+      <p>精密加工や家具の専門家の力を借りながら、一台ずつ手で仕上げるので、造りは少しずつ違います。長く使っていただける質感を大切にしています。</p>
+      <div class="creed">
+        <div><b>音</b><span>見かけの数字より、心に届く音を。</span></div>
+        <div><b>大きさ</b><span>生活の中で使えるサイズ。和にも洋にも、家にも仕事場にもなじむ形に。</span></div>
+        <div><b>手しごと</b><span>使う人の立場で良いと思えるものを、一品ずつ手で作ります。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. shops -->
+<section class="sec" data-sec="shops" id="shops" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">取扱店・ふるさと納税</span><h2>音を確かめられる場所</h2></div>
+      <p class="lead">お店で実物にふれるか、ふるさと納税の返礼品として。</p>
+    </div>
+    <div class="shops-grid">
+      <div class="shop-box">
+        <h3>取扱店</h3>
+        <div class="shop"><span class="pinb">1</span><div><b>銀座 山野楽器 本店</b><span>東京・銀座</span></div></div>
+        <div class="shop"><span class="pinb">2</span><div><b>代官山蔦屋書店</b><span>東京・代官山</span></div></div>
+        <div class="shop"><span class="pinb">3</span><div><b>二子玉川 蔦屋家電</b><span>東京・二子玉川</span></div></div>
+      </div>
+      <div class="shop-box furu">
+        <h3>ふるさと納税の返礼品</h3>
+        <div class="town"><span>長野県 岡谷市</span><span>長野県 富士見町</span></div>
+        <ul class="furu-list"><li>アコースティックオーディオセット<small>岡谷市・富士見町</small></li><li>真空管アコースティックオーディオセット<small>岡谷市・富士見町</small></li><li>超小型モニターオーディオセット<small>岡谷市</small></li><li>ヘッドホンアンプ HA-1 プレカスタムモデル<small>岡谷市</small></li></ul>
+        <p>内容は各自治体のページでご確認ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. contact -->
+<section class="sec contact" data-sec="contact" id="contact">
+  <div class="wrap ct-grid">
+    <div>
+      <span class="eyebrow" style="color:#F0D7C6">お問い合わせ</span>
+      <h2>まずは、<br>ご相談ください</h2>
+      <p class="lead">置きたい場所の広さや雰囲気をお聞きして、合う組み合わせをメールでご提案します。お店・ホテルの方も、ご自宅の方も同じ窓口です。</p>
+      <div class="steps">
+        <div class="step"><i>1</i><div><b>メールでご相談</b><span>使う場所と、いま気になっていることをお知らせください。</span></div></div>
+        <div class="step"><i>2</i><div><b>組み合わせのご提案</b><span>スピーカーとアンプの組み合わせ、置き方をご案内します。</span></div></div>
+        <div class="step"><i>3</i><div><b>ご注文・お届け</b><span>内容に納得いただいてから、ご注文をお受けします。</span></div></div>
+      </div>
+    </div>
+    <div class="form" aria-label="相談の入力欄（デザイン見本）">
+      <label>お名前</label><input type="text" placeholder="例）山田 花子">
+      <label>メールアドレス</label><input type="email" placeholder="例）hanako@example.jp">
+      <label>使う場所</label>
+      <div class="opts"><span class="on">ホテル・宿</span><span>カフェ・飲食店</span><span>店舗・売り場</span><span>事務所・放送局</span><span>ご自宅・デスク</span></div>
+      <label>ご相談の内容</label><textarea placeholder="例）客室12室のテレビの横に置きたいです。"></textarea>
+      <button class="send" type="button">この内容で相談する</button>
+      <p class="small">返信はメールでお送りします</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. footer -->
+<footer data-sec="footer">
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <a class="logo" href="#top"><b>MH audio</b></a>
+        <p style="margin-top:10px">世界最小の本格オーディオ<br>長野県富士見町の工房から</p>
+      </div>
+      <div class="ft-cols">
+        <div><h4>見る</h4><ul><li><a href="#cases">導入している場所</a></li><li><a href="#awards">評価・実績</a></li><li><a href="#reading">読みもの</a></li></ul></div>
+        <div><h4>製品</h4><ul><li><a href="#products">WAON・KION</a></li><li><a href="#products">UA-1・DA-1</a></li><li><a href="#products">HA-11・HA-1</a></li></ul></div>
+        <div><h4>知る</h4><ul><li><a href="#maker">工房について</a></li><li><a href="#shops">取扱店・ふるさと納税</a></li><li><a href="#contact">お問い合わせ</a></li></ul></div>
+      </div>
+    </div>
+    <div class="copy">© MH audio</div>
+  </div>
+</footer>
+
+<!-- 場所から探す（下部タブ） -->
+<div class="findbar" role="group" aria-label="場所から探す">
+  <span class="lb"><svg viewBox="0 0 10 14"><path d="M5 0a5 5 0 0 0-5 5c0 4 5 9 5 9s5-5 5-9a5 5 0 0 0-5-5z"/></svg><span>場所から探す</span></span>
+  <button data-area="all">すべて</button>
+  <button data-area="nagano">長野</button>
+  <button data-area="tokyo">東京</button>
+  <button data-area="chiba">千葉</button>
+</div>
+<div class="demo">デザイン提案（株式会社hoshimi）<br>実際のサイトではありません</div>
+
+<script>
+// 場所の一覧（地図の点・一覧・カードをつなぐ）
+const PLACES=[
+  {id:"manruyama",name:"万る山",kind:"和食",area:"nagano",x:96,y:78,lx:1,ly:0},
+  {id:"masumi",name:"セラ真澄",kind:"酒蔵",area:"nagano",x:150,y:142,lx:1,ly:-2},
+  {id:"katakura",name:"かたくらシルクホテル",kind:"ホテル",area:"nagano",x:126,y:168,lx:-1,ly:0},
+  {id:"taiyo",name:"太養パン",kind:"パン",area:"nagano",x:152,y:186,lx:1,ly:2},
+  {id:"quatre",name:"キャトル・セゾン",kind:"菓子",area:"nagano",x:186,y:236,lx:-1,ly:1},
+  {id:"poltrone",name:"イル・ポルトローネ",kind:"イタリアン",area:"tokyo",x:368,y:112,lx:1,ly:-1},
+  {id:"tarot",name:"CAFÉ Tarot",kind:"カフェ",area:"tokyo",x:384,y:152,lx:1,ly:0},
+  {id:"museum",name:"東京タロット美術館",kind:"美術館",area:"tokyo",x:380,y:178,lx:1,ly:1.4},
+  {id:"sunpika",name:"SUNPIKA TOKYO",kind:"宿",area:"tokyo",x:330,y:150,lx:-1,ly:-1},
+  {id:"tsutaya",name:"六本木蔦屋書店",kind:"書店",area:"tokyo",x:334,y:196,lx:-1,ly:1},
+  {id:"bayfm",name:"bayfm78",kind:"放送局",area:"chiba",x:512,y:182,lx:1,ly:0},
+];
+const AREAS={nagano:"長野",tokyo:"東京",chiba:"千葉"};
+
+function mapSVG(){
+  let s=`<svg class="mapsvg" viewBox="0 0 600 290" role="img" aria-label="長野・東京・千葉の導入場所の地図">
+  <path class="land n" d="M70 30 C120 14 196 26 226 62 C250 92 238 140 248 178 C256 214 236 262 196 272 C150 282 118 258 96 228 C72 196 50 160 48 118 C46 80 44 42 70 30Z"/>
+  <path class="land" d="M298 104 C324 90 380 88 414 98 C430 104 430 130 424 160 C418 194 404 220 372 226 C340 230 306 220 294 196 C282 170 280 118 298 104Z"/>
+  <path class="land" d="M478 124 C508 112 548 118 566 142 C584 168 588 214 578 246 C568 272 544 282 524 268 C506 254 510 226 498 206 C486 188 464 172 466 150 C468 136 472 128 478 124Z"/>
+  <text class="land-label" x="62" y="262">長野県</text>
+  <text class="land-label" x="320" y="250">東京都</text>
+  <text class="land-label" x="508" y="290" dy="-6">千葉県</text>
+  <path class="route" d="M198 246 C250 230 270 176 300 170 M426 168 C450 176 482 180 506 182"/>
+  <g class="home-mark" transform="translate(198,246)"><rect x="-6" y="-6" width="12" height="12" rx="2" transform="rotate(45)"/><text x="10" y="22">工房（富士見町）</text></g>`;
+  for(const p of PLACES){
+    const anchor=p.lx<0?"end":"start";
+    const tx=p.x+p.lx*11, ty=p.y+4+p.ly*7;
+    s+=`<g class="dot" data-place="${p.id}" tabindex="0"><circle class="h" cx="${p.x}" cy="${p.y}" r="16"/><circle class="c" cx="${p.x}" cy="${p.y}" r="6.5"/><text x="${tx}" y="${ty}" text-anchor="${anchor}">${p.name}</text></g>`;
+  }
+  return s+`</svg>`;
+}
+document.querySelectorAll(".map-slot").forEach(el=>el.innerHTML=mapSVG());
+
+// ヒーローの場所の一覧
+const listHTML=Object.entries(AREAS).map(([a,l])=>{
+  const ps=PLACES.filter(p=>p.area===a);
+  return `<div><h4>${l}（${ps.length}）</h4><ul>${ps.map(p=>`<li data-place="${p.id}">${p.name}</li>`).join("")}</ul></div>`;
+}).join("");
+document.getElementById("heroList").innerHTML=listHTML;
+document.getElementById("sideList").innerHTML=listHTML;
+
+// 点・一覧・カードの光る連動（この案の唯一の動き）
+function light(id,on){
+  document.querySelectorAll(`[data-place="${id}"]`).forEach(e=>e.classList.toggle("on",on));
+}
+document.querySelectorAll("[data-place]").forEach(el=>{
+  const id=el.dataset.place;
+  el.addEventListener("mouseenter",()=>light(id,true));
+  el.addEventListener("mouseleave",()=>light(id,false));
+  if(!el.classList.contains("card")){
+    el.addEventListener("click",()=>{
+      setArea("all");
+      const c=document.querySelector(`.card[data-place="${id}"]`);
+      if(c){c.scrollIntoView({block:"center"});light(id,true);setTimeout(()=>light(id,false),1600);}
+    });
+  }
+});
+
+// 場所から探す（地域で絞る）
+function setArea(a){
+  document.querySelectorAll(".fbtn,.findbar button").forEach(b=>b.classList.toggle("on",b.dataset.area===a));
+  document.querySelectorAll(".card[data-area]").forEach(c=>c.classList.toggle("hide",a!=="all"&&c.dataset.area!==a));
+  document.querySelectorAll(".ind").forEach(g=>{g.style.display=g.querySelectorAll(".card:not(.hide)").length?"":"none"});
+  document.querySelectorAll(".dot").forEach(d=>{
+    const p=PLACES.find(x=>x.id===d.dataset.place);
+    d.classList.toggle("dim",a!=="all"&&p.area!==a);
+  });
+}
+document.querySelectorAll(".fbtn").forEach(b=>b.addEventListener("click",()=>setArea(b.dataset.area)));
+setArea("all");
+document.querySelectorAll(".findbar button").forEach(b=>b.addEventListener("click",()=>{
+  setArea(b.dataset.area);document.getElementById("cases").scrollIntoView();
+}));
+</script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="ja">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MH audio 客室の一台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#141A26; --navy2:#1A2131; --navy3:#222B3E;
+  --brass:#B89B5E; --brass-l:#D2BC8A;
+  --ivory:#EEE9DF; --ivory-d:#C9C2B4; --mute:#8E96A6;
+  --line:rgba(184,155,94,.35); --line-soft:rgba(238,233,223,.12);
+  --en:"Cormorant Garamond", "Times New Roman", serif;
+  --jp:"Noto Serif JP", "Hiragino Mincho ProN", serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ivory);font-family:var(--jp);font-weight:300;line-height:1.9;letter-spacing:.04em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;overflow-x:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.nw{white-space:nowrap}
+.wrap{width:min(1200px,100% - 96px);margin:0 auto}
+.en{font-family:var(--en)}
+.eyebrow{font-family:var(--en);font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass)}
+.sec{padding:140px 0}
+.sec-head{display:grid;grid-template-columns:280px 1fr;gap:48px;margin-bottom:72px;align-items:end}
+.sec-head .no{font-family:var(--en);font-style:italic;font-weight:300;font-size:22px;color:var(--brass);display:block;margin-bottom:6px}
+.sec-head h2{font-family:var(--en);font-weight:300;font-size:56px;line-height:1.05;letter-spacing:.01em}
+.sec-head .jp{font-size:15px;color:var(--ivory-d);margin-top:10px;letter-spacing:.2em}
+.sec-head p.lead{font-size:16px;color:var(--ivory-d);max-width:620px;border-left:1px solid var(--line);padding-left:32px}
+.rule{height:1px;background:var(--line);border:0}
+
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:50;background:linear-gradient(to bottom,rgba(10,13,20,.72),rgba(10,13,20,0));border-bottom:1px solid rgba(238,233,223,.14);backdrop-filter:blur(2px)}
+header .in{display:flex;align-items:center;justify-content:space-between;height:68px;width:min(1360px,100% - 64px);margin:0 auto}
+.logo{font-family:var(--en);font-size:25px;font-weight:500;letter-spacing:.14em}
+.logo small{font-family:var(--jp);font-size:10px;letter-spacing:.3em;color:var(--ivory-d);margin-left:14px;font-weight:300}
+nav ul{display:flex;gap:34px;list-style:none;font-size:13px;letter-spacing:.18em}
+nav a{color:var(--ivory-d);transition:color .2s}
+nav a:hover{color:var(--brass-l)}
+.cta-s{border:1px solid var(--brass);color:var(--brass-l);padding:9px 20px;font-size:13px;letter-spacing:.16em;white-space:nowrap}
+.cta-s:hover{background:var(--brass);color:var(--navy)}
+.hdr-r{display:flex;align-items:center;gap:40px}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:680px;max-height:980px;overflow:hidden}
+.hero img{position:absolute;inset:0;object-position:50% 55%;filter:saturate(.8) brightness(.62)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,17,26,.92) 0%,rgba(13,17,26,.55) 42%,rgba(13,17,26,.15) 75%),linear-gradient(to top,rgba(13,17,26,.85),rgba(13,17,26,0) 45%)}
+.hero .copy{position:absolute;left:max(64px,calc((100% - 1360px)/2));bottom:96px;z-index:2;max-width:760px;animation:rise 1.6s ease-out both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero h1{font-family:var(--en);font-weight:300;font-size:96px;line-height:.98;letter-spacing:-.005em}
+.hero h1 em{font-style:italic;color:var(--brass-l)}
+.hero .sub{margin-top:30px;font-size:22px;font-weight:400;letter-spacing:.16em}
+.hero .sub2{margin-top:12px;font-size:14px;color:var(--ivory-d);letter-spacing:.12em}
+.hero .meta{position:absolute;right:max(64px,calc((100% - 1360px)/2));bottom:96px;z-index:2;text-align:right;font-size:12px;color:var(--ivory-d);letter-spacing:.16em;border-right:1px solid var(--brass);padding-right:18px;line-height:2}
+.hero .meta b{display:block;font-family:var(--en);font-style:italic;font-weight:400;font-size:18px;color:var(--brass-l);letter-spacing:.06em}
+
+/* entrances */
+.ent{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--navy)}
+.ent a{position:relative;height:460px;overflow:hidden;display:block}
+.ent img{filter:brightness(.5) saturate(.8);transition:filter .4s}
+.ent a::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,17,26,.95) 0%,rgba(13,17,26,.7) 40%,rgba(13,17,26,0) 75%)}
+.ent .t{z-index:1}
+.ent a:hover img{filter:brightness(.62) saturate(.85)}
+.ent .t{position:absolute;z-index:1;left:56px;bottom:52px;right:56px}
+.ent .t .eyebrow{display:block;margin-bottom:12px}
+.ent h3{font-size:32px;font-weight:400;letter-spacing:.12em;line-height:1.5}
+.ent p{font-size:14px;color:var(--ivory-d);margin-top:12px;max-width:440px}
+.ent .go{display:inline-block;margin-top:22px;font-size:13px;letter-spacing:.2em;color:var(--brass-l);border-bottom:1px solid var(--brass);padding-bottom:4px}
+.ent-top{background:var(--navy2);border-bottom:1px solid var(--line-soft)}
+.ent-top .wrap{display:flex;justify-content:space-between;align-items:center;padding:30px 0;gap:24px}
+.ent-top p{font-size:15px;color:var(--ivory-d);letter-spacing:.14em}
+
+/* reasons */
+.reasons{background:var(--navy)}
+.rs{display:grid;grid-template-columns:1fr 1fr;gap:0 96px}
+.r{display:grid;grid-template-columns:72px 1fr;padding:40px 0;border-top:1px solid var(--line)}
+.r .n{font-family:var(--en);font-style:italic;font-size:40px;font-weight:300;color:var(--brass);line-height:1}
+.r h3{font-size:22px;font-weight:500;letter-spacing:.1em;line-height:1.5}
+.r p{font-size:15px;color:var(--ivory-d);margin-top:12px}
+.r-photo{margin-top:80px;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:center}
+.r-photo .ph{height:440px}
+.r-photo blockquote{font-size:20px;line-height:2.1;font-weight:400;letter-spacing:.08em}
+.r-photo cite{display:block;margin-top:24px;font-style:normal;font-size:13px;color:var(--brass-l);letter-spacing:.16em}
+
+/* cases */
+.cases{background:var(--navy2)}
+.case{display:grid;grid-template-columns:1.25fr 1fr;min-height:520px;background:var(--navy3);margin-bottom:40px}
+.case:nth-of-type(even){grid-template-columns:1fr 1.25fr}
+.case:nth-of-type(even) .ph{order:2}
+.case .ph{height:100%;min-height:520px;overflow:hidden}
+.case .ph img{filter:saturate(.85) brightness(.85)}
+.case .tx{padding:64px 60px;display:flex;flex-direction:column;justify-content:center}
+.case .cat{display:flex;gap:14px;align-items:center;font-size:12px;letter-spacing:.24em;color:var(--brass-l)}
+.case .cat::before{content:"";width:28px;height:1px;background:var(--brass)}
+.case h3{font-size:30px;font-weight:500;letter-spacing:.08em;line-height:1.45;margin:18px 0 6px}
+.case .place{font-size:13px;color:var(--mute);letter-spacing:.14em}
+.case p{font-size:15px;color:var(--ivory-d);margin-top:24px}
+.case dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line-soft);font-size:13px}
+.case dt{color:var(--brass-l);letter-spacing:.16em}
+.case dd{color:var(--ivory)}
+.others{margin-top:88px}
+.others h3{font-family:var(--en);font-weight:300;font-size:30px;margin-bottom:8px}
+.others .jp{font-size:13px;color:var(--ivory-d);letter-spacing:.2em}
+.ol{display:grid;grid-template-columns:repeat(4,1fr);gap:0 40px;margin-top:36px}
+.ol .grp{border-top:1px solid var(--brass);padding-top:20px}
+.ol .grp h4{font-size:12px;letter-spacing:.24em;color:var(--brass-l);font-weight:400;margin-bottom:14px}
+.ol li{list-style:none;display:flex;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line-soft);font-size:15px;font-weight:400}
+.ol li .tn{flex:0 0 56px;height:56px;overflow:hidden}
+.ol li .tn img{filter:saturate(.8)}
+.ol li{white-space:normal}
+.ol li span small{display:block;font-size:11px;color:var(--mute);font-weight:300;letter-spacing:.1em}
+
+/* awards */
+.awards{background:var(--navy)}
+.aw{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.aw > div{padding:44px 32px;border-right:1px solid var(--line)}
+.aw > div:last-child{border-right:0}
+.aw .k{font-family:var(--en);font-style:italic;font-size:18px;color:var(--brass);display:block;margin-bottom:8px}
+.aw h3{font-size:14px;letter-spacing:.2em;font-weight:400;color:var(--ivory-d);margin-bottom:22px}
+.aw .big{font-size:22px;font-weight:500;line-height:1.6;letter-spacing:.06em}
+.aw ul{list-style:none;font-size:16px;font-weight:400;line-height:2.2}
+.aw p{font-size:13px;color:var(--ivory-d);margin-top:14px}
+.aw-media{display:grid;grid-template-columns:1fr 2fr;gap:56px;margin-top:72px;align-items:center}
+.aw-media .ph{height:300px}
+.aw-media p{font-size:15px;color:var(--ivory-d)}
+
+/* products */
+.products{background:var(--navy2)}
+.pg-h{display:flex;align-items:baseline;gap:20px;margin:0 0 28px}
+.pg-h h3{font-family:var(--en);font-weight:300;font-size:34px}
+.pg-h span{font-size:13px;letter-spacing:.2em;color:var(--ivory-d)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:72px}
+.p{background:var(--navy3);display:flex;flex-direction:column}
+.p .ph{height:260px;overflow:hidden}
+.p .bd{padding:28px 30px 32px;flex:1;display:flex;flex-direction:column}
+.p .nm{font-family:var(--en);font-size:32px;font-weight:400;letter-spacing:.06em;line-height:1}
+.p .ty{font-size:12px;color:var(--brass-l);letter-spacing:.22em;margin:12px 0 14px}
+.p p{font-size:14px;color:var(--ivory-d);flex:1}
+.p .more{margin-top:20px;font-size:12px;letter-spacing:.2em;color:var(--brass-l)}
+.pnote{font-size:13px;color:var(--mute);margin-top:-40px}
+
+/* reading (ivory band) */
+.reading{background:var(--ivory);color:var(--navy)}
+.reading .sec-head h2{color:var(--navy)}
+.reading .sec-head .jp,.reading .sec-head p.lead{color:#4A4F5B}
+.reading .sec-head .no{color:#8C7440}
+.rl{list-style:none;border-top:1px solid #1A2131}
+.rl li a{display:grid;grid-template-columns:90px 180px 1fr 140px;align-items:center;gap:24px;padding:28px 8px;border-bottom:1px solid rgba(20,26,38,.2);transition:background .2s}
+.rl li a:hover{background:rgba(184,155,94,.12)}
+.rl .n{font-family:var(--en);font-style:italic;font-size:30px;color:#8C7440}
+.rl .tg{font-size:12px;letter-spacing:.18em;color:#5A6070}
+.rl .tt{font-size:20px;font-weight:500;letter-spacing:.06em;line-height:1.6}
+.rl .im{font-size:11px;color:#7A7F8A;text-align:right;letter-spacing:.1em}
+
+/* maker */
+.maker{background:var(--navy)}
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.mk .phs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mk .phs .a{grid-column:1/3;height:340px}
+.mk .phs .b{height:220px}
+.mk h3{font-size:34px;font-weight:400;line-height:1.7;letter-spacing:.1em}
+.mk p{font-size:15px;color:var(--ivory-d);margin-top:24px}
+.mk .sign{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;letter-spacing:.16em}
+.mk .sign b{font-family:var(--en);font-style:italic;font-weight:400;font-size:22px;color:var(--brass-l);margin-right:12px}
+.mk ul{list-style:none;margin-top:28px;display:grid;gap:14px}
+.mk li{display:grid;grid-template-columns:120px 1fr;font-size:14px;color:var(--ivory-d)}
+.mk li b{color:var(--brass-l);font-weight:400;letter-spacing:.2em}
+
+/* shops */
+.shops{background:var(--navy2)}
+.sh{display:grid;grid-template-columns:1.2fr 1fr;gap:64px}
+.st{list-style:none;border-top:1px solid var(--line)}
+.st li{display:grid;grid-template-columns:1fr auto;gap:16px;padding:26px 0;border-bottom:1px solid var(--line-soft)}
+.st h4{font-size:19px;font-weight:500;letter-spacing:.08em}
+.st p{font-size:13px;color:var(--ivory-d);margin-top:4px}
+.st .ar{font-family:var(--en);font-style:italic;color:var(--brass-l);font-size:17px;align-self:center}
+.furu{background:var(--navy3);padding:44px 40px;border-top:2px solid var(--brass)}
+.furu h3{font-size:22px;font-weight:500;letter-spacing:.1em}
+.furu p{font-size:14px;color:var(--ivory-d);margin-top:14px}
+.furu .tw{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.furu .tw div{border:1px solid var(--line);padding:18px 20px}
+.furu .tw b{display:block;font-size:17px;font-weight:500;letter-spacing:.1em}
+.furu .tw span{font-size:12px;color:var(--ivory-d)}
+
+/* contact */
+.contact{position:relative;padding:160px 0;overflow:hidden}
+.contact > img{position:absolute;inset:0;filter:brightness(.32) saturate(.7)}
+.contact .in{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.contact h2{font-family:var(--en);font-weight:300;font-size:64px;line-height:1.05}
+.contact h2 + p{font-size:24px;font-weight:400;margin-top:22px;letter-spacing:.14em}
+.contact .lead{font-size:15px;color:var(--ivory-d);margin-top:24px;max-width:520px}
+.steps{list-style:none;background:rgba(20,26,38,.82);border:1px solid var(--line);padding:40px 44px}
+.steps li{display:grid;grid-template-columns:56px 1fr;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.steps li:last-of-type{border-bottom:0}
+.steps .n{font-family:var(--en);font-style:italic;font-size:26px;color:var(--brass)}
+.steps h4{font-size:16px;font-weight:500;letter-spacing:.1em}
+.steps p{font-size:13px;color:var(--ivory-d)}
+.btn{display:block;text-align:center;margin-top:26px;background:var(--brass);color:var(--navy);padding:18px;font-size:15px;letter-spacing:.2em;font-weight:500}
+.btn:hover{background:var(--brass-l)}
+.steps .note{font-size:12px;color:var(--mute);margin-top:12px;text-align:center}
+
+/* footer */
+footer{background:#0E121B;padding:72px 0 120px;font-size:13px;color:var(--ivory-d)}
+footer .in{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer .logo{font-size:30px;color:var(--ivory)}
+footer h5{font-size:12px;letter-spacing:.24em;color:var(--brass-l);font-weight:400;margin-bottom:14px}
+footer ul{list-style:none;line-height:2.2}
+footer .cp{margin-top:56px;padding-top:24px;border-top:1px solid var(--line-soft);font-family:var(--en);letter-spacing:.14em;font-size:13px}
+
+.badge{position:fixed;left:16px;bottom:16px;z-index:99;background:rgba(14,18,27,.92);border:1px solid var(--brass);color:var(--ivory);font-size:11px;padding:8px 12px;letter-spacing:.06em;line-height:1.5}
+
+/* responsive */
+@media (max-width:1100px){
+  nav ul{display:none}
+  .hero h1{font-size:72px}
+  .sec-head{grid-template-columns:1fr;gap:20px}
+  .ol{grid-template-columns:1fr 1fr;gap:28px 32px}
+  .aw{grid-template-columns:1fr 1fr}
+  .aw > div:nth-child(2){border-right:0}
+  .aw > div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .rl li a{grid-template-columns:70px 1fr 120px}
+  .rl .tg{display:none}
+}
+@media (max-width:760px){
+  .wrap{width:calc(100% - 32px)}
+  header .in{width:calc(100% - 32px);height:60px}
+  .logo small{display:none}
+  .cta-s{padding:8px 14px;font-size:12px}
+  .sec{padding:88px 0}
+  .sec-head{margin-bottom:44px}
+  .sec-head h2{font-size:40px}
+  .sec-head p.lead{padding-left:18px;font-size:15px}
+  .hero{height:auto;min-height:0;max-height:none;aspect-ratio:auto}
+  .hero{height:760px}
+  .hero img{object-position:30% 50%}
+  .hero .copy{left:16px;right:16px;bottom:150px}
+  .hero h1{font-size:50px}
+  .hero .sub{font-size:17px;margin-top:20px;letter-spacing:.1em}
+  .hero .sub2{font-size:13px}
+  .hero .eyebrow{letter-spacing:.18em;font-size:12px}
+  .ent a::after{background:linear-gradient(to top,rgba(13,17,26,.96) 0%,rgba(13,17,26,.8) 55%,rgba(13,17,26,.1) 90%)}
+  .hero .meta{left:16px;right:auto;bottom:56px;text-align:left;border-right:0;border-left:1px solid var(--brass);padding:0 0 0 14px}
+  .ent{grid-template-columns:1fr}
+  .ent a{height:380px}
+  .ent .t{left:24px;right:24px;bottom:32px}
+  .ent h3{font-size:25px}
+  .ent-top .wrap{flex-direction:column;align-items:flex-start}
+  .rs{grid-template-columns:1fr}
+  .r{grid-template-columns:52px 1fr;padding:30px 0}
+  .r .n{font-size:32px}
+  .r h3{font-size:19px}
+  .r-photo{grid-template-columns:1fr;gap:28px}
+  .r-photo .ph{height:260px}
+  .r-photo blockquote{font-size:17px}
+  .case,.case:nth-of-type(even){grid-template-columns:1fr}
+  .case:nth-of-type(even) .ph{order:0}
+  .case .ph{min-height:260px;height:260px}
+  .case .tx{padding:32px 24px 36px}
+  .case h3{font-size:23px}
+  .ol{grid-template-columns:1fr}
+  .aw{grid-template-columns:1fr}
+  .aw > div{border-right:0;border-bottom:1px solid var(--line);padding:32px 4px}
+  .aw > div:last-child{border-bottom:0}
+  .aw-media{grid-template-columns:1fr;gap:24px}
+  .aw-media .ph{height:220px}
+  .pgrid{grid-template-columns:1fr;gap:20px}
+  .p .ph{height:220px}
+  .pnote{margin-top:-24px}
+  .rl li a{grid-template-columns:44px 1fr;gap:4px 14px;padding:22px 4px}
+  .rl .n{font-size:24px;grid-row:1/3}
+  .rl .tt{font-size:17px}
+  .rl .im{text-align:left;grid-column:2}
+  .mk{grid-template-columns:1fr;gap:40px}
+  .mk .phs .a{height:230px}
+  .mk .phs .b{height:140px}
+  .mk h3{font-size:24px}
+  .mk li{grid-template-columns:96px 1fr}
+  .sh{grid-template-columns:1fr;gap:40px}
+  .furu{padding:32px 22px}
+  .st .ar{display:none}
+  .st li{grid-template-columns:1fr}
+  .furu .tw{grid-template-columns:1fr}
+  .contact{padding:96px 0}
+  .contact .in{grid-template-columns:1fr;gap:40px}
+  .contact h2{font-size:44px}
+  .contact h2 + p{font-size:19px}
+  .steps{padding:24px 20px}
+  footer .in{grid-template-columns:1fr 1fr}
+  footer .in > div:first-child{grid-column:1/3}
+  .badge{font-size:10px;left:8px;bottom:8px;right:auto;max-width:calc(100% - 16px)}
+}
+</style>
+</head>
+<body>
+
+<header data-sec="header">
+  <div class="in">
+    <a href="#top" class="logo">MH audio<small>エムエイチオーディオ</small></a>
+    <div class="hdr-r">
+      <nav><ul>
+        <li><a href="#cases">導入事例</a></li>
+        <li><a href="#reasons">選ばれる理由</a></li>
+        <li><a href="#products">製品</a></li>
+        <li><a href="#reading">読みもの</a></li>
+        <li><a href="#maker">工房</a></li>
+        <li><a href="#shops">取扱店</a></li>
+      </ul></nav>
+      <a href="#contact" class="cta-s">導入のご相談</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top" data-sec="hero">
+  <img src="img/katakura_04.jpg" alt="かたくらシルクホテルの客室。テレビの横に小さなスピーカーWAONが置かれている">
+  <div class="copy">
+    <span class="eyebrow">Handcrafted in Nagano, Japan</span>
+    <h1 style="margin-top:22px">The quiet one<br><em>in the room.</em></h1>
+    <p class="sub">客室に、ひとつの本物の音。</p>
+    <p class="sub2">世界最小の本格オーディオ ― 小さな音でも、部屋のどこでも澄んで聴こえる。</p>
+  </div>
+  <p class="meta"><b>Katakura Silk Hotel</b>かたくらシルクホテル様<br>全9室にご採用</p>
+</section>
+
+<div class="ent-top">
+  <div class="wrap">
+    <p>どちらでお使いになりますか</p>
+    <span class="eyebrow">Two ways in</span>
+  </div>
+</div>
+<section class="ent" data-sec="entrances">
+  <a href="#cases">
+    <img src="img/tarot_05.jpg" alt="CAFÉ Tarotの店内">
+    <div class="t">
+      <span class="eyebrow">For hotels &amp; shops</span>
+      <h3>店舗・ホテルで使う</h3>
+      <p>客室、売り場、カフェ、酒蔵、放送局。会話の邪魔をせず、空間をそっと満たす音を。設置の方法からご相談いただけます。</p>
+      <span class="go">導入事例を見る</span>
+    </div>
+  </a>
+  <a href="#products">
+    <img src="img/waon_17.jpg" alt="ノートパソコンの両脇に置いたスピーカーWAON">
+    <div class="t">
+      <span class="eyebrow">For home &amp; desk</span>
+      <h3>ご自宅・デスクで楽しむ</h3>
+      <p>CDジャケットほどのスピーカーと、手のひらのアンプ。机の上で、いつもの音楽が見違えるように鳴ります。</p>
+      <span class="go">製品を見る</span>
+    </div>
+  </a>
+</section>
+
+<section class="sec reasons" id="reasons" data-sec="reasons">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 01</span><h2>Why it is<br>chosen</h2><p class="jp">選ばれる理由</p></div>
+      <p class="lead">大きく、重く、複雑なオーディオは良い音がする――本当でしょうか。<span class="nw">MH audio</span> は、音のことだけを考えて、小さくシンプルなスピーカーとアンプをつくっています。</p>
+    </div>
+    <div class="rs">
+      <div class="r"><span class="n">i.</span><div><h3>大音量でなくても、よく聴こえる</h3><p>クリアで浸透性のある音なので、広い場所でも音量を上げずに届きます。六本木蔦屋書店様は、1階の売り場を<span class="nw">WAON 6本</span>で。</p></div></div>
+      <div class="r"><span class="n">ii.</span><div><h3>会話を邪魔しない</h3><p>小さな音でもちゃんと聴こえ、お客様の会話のじゃまをしない。酒蔵の売り場やカフェで選ばれている理由です。</p></div></div>
+      <div class="r"><span class="n">iii.</span><div><h3>一日聴いても疲れない</h3><p>柔らかく立体的な響き。仕事をしながら、くつろぎながら、流しっぱなしにしていても耳が疲れにくい音を目指しています。</p></div></div>
+      <div class="r"><span class="n">iv.</span><div><h3>小さくて、場所を取らない</h3><p>スピーカーはCDジャケットほど、アンプは手のひらほど。底に三脚用のネジがあり、天井からの吊り下げや壁への設置もできます。</p></div></div>
+    </div>
+    <div class="r-photo">
+      <div class="ph"><img src="img/katakura_05.jpg" alt="ホテル客室のテレビ台に置いたWAON"></div>
+      <div>
+        <blockquote>小さな音量でも、部屋のどこでも<br>澄んだ空気のように聴こえる音。</blockquote>
+        <cite>― かたくらシルクホテル様の事例より</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cases" id="cases" data-sec="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 02</span><h2>Where it<br>plays</h2><p class="jp">お客様の事例</p></div>
+      <p class="lead">ホテル、書店、酒蔵、放送局、飲食店。16の場所で、<span class="nw">MH audio</span> が毎日鳴っています。内装に合わせて色やアンプを選び、目立たず、でも隠さずに設置します。</p>
+    </div>
+
+    <article class="case">
+      <div class="ph"><img src="img/katakura_02.jpg" alt="かたくらシルクホテルの客室"></div>
+      <div class="tx">
+        <span class="cat">HOTEL ・ ホテル</span>
+        <h3>かたくらシルクホテル様</h3>
+        <span class="place">長野県諏訪市</span>
+        <p>皇室ゆかりの「諏訪湖ホテル」が2021年に生まれ変わったホテル。計画の段階からお声がけいただき、全室にWAONのオーディオセットを入れました。部屋ごとのインテリアに合わせて、スピーカーの色とアンプを選んでいます。</p>
+        <dl><dt>導入</dt><dd>全9室</dd><dt>製品</dt><dd>WAON ／ UA-1 ／ DA-1</dd></dl>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="ph"><img src="img/tsutaya_07.jpg" alt="六本木蔦屋書店の売り場"></div>
+      <div class="tx">
+        <span class="cat">BOOKSTORE ・ 書店</span>
+        <h3>六本木蔦屋書店様</h3>
+        <span class="place">東京都港区 六本木けやき坂</span>
+        <p>1階の売り場とカフェのBGMを、天井から吊るした<span class="nw">WAON 6本</span>でまかなっています。2020年の改装で内装が黒に変わった際は、5年使ったWAONを引き取って点検し、黒に塗り直しました。</p>
+        <dl><dt>導入</dt><dd>2015年〜 1階売り場</dd><dt>製品</dt><dd>WAON（6本・天井吊り）</dd></dl>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="ph"><img src="img/masumi_05.jpg" alt="セラ真澄の店内"></div>
+      <div class="tx">
+        <span class="cat">SAKE BREWERY ・ 酒蔵</span>
+        <h3>宮坂醸造「セラ真澄」様</h3>
+        <span class="place">長野県諏訪市</span>
+        <p>大きな梁と漆喰の壁の蔵元ショップ。2012年の全面改装で店内の音響を担当しました。<span class="nw">130㎡</span>余りを<span class="nw">WAON 4本</span>で。WAONは内装と同じ塗料で特別に仕上げ、梁の上や天井の隅にさりげなく据えています。</p>
+        <dl><dt>導入</dt><dd>2012年 全面改装時</dd><dt>製品</dt><dd>WAON（4本・内装と同じ塗装）</dd></dl>
+      </div>
+    </article>
+
+    <div class="others">
+      <h3>More places</h3><p class="jp">そのほかの導入先</p>
+      <div class="ol">
+        <div class="grp"><h4>放送局</h4><ul>
+          <li><span>ベイエフエム「bayfm78」様<small>ラジオ局</small></span></li>
+        </ul></div>
+        <div class="grp"><h4>飲食店・カフェ</h4><ul>
+          <li><span>和食レストラン「万る山」様<small>和食</small></span></li>
+          <li><span>CAFÉ Tarot様<small>カフェ</small></span></li>
+          <li><span>イル・ポルトローネ様<small>レストラン</small></span></li>
+        </ul></div>
+        <div class="grp"><h4>菓子・パン</h4><ul>
+          <li><span>菓子工房 キャトル・セゾン様<small>洋菓子</small></span></li>
+          <li><span>太養パン様<small>パン</small></span></li>
+        </ul></div>
+        <div class="grp"><h4>美術館・ショップ</h4><ul>
+          <li><span>東京タロット美術館様<small>美術館</small></span></li>
+          <li><span>SUNPIKA TOKYO様<small>ショップ</small></span></li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec awards" id="awards" data-sec="awards">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 03</span><h2>Recognition</h2><p class="jp">評価・実績</p></div>
+      <p class="lead">賞をいただき、雑誌に取り上げられ、音楽家にも使っていただいています。銀座・代官山・二子玉川のお店で、実際に音を聴いていただけます。</p>
+    </div>
+    <div class="aw">
+      <div><span class="k">Award</span><h3>受賞</h3><p class="big">オーディオ銘機賞<br>2014</p><p>ヘッドホンアンプ HA-11</p></div>
+      <div><span class="k">Press</span><h3>雑誌への掲載</h3><ul><li>レコード芸術</li><li>Mac Fan</li><li>Pen＋</li><li>ステレオ時代</li></ul></div>
+      <div><span class="k">Beloved by</span><h3>ご愛用の方</h3><p class="big">指揮者<br>小林研一郎様</p></div>
+      <div><span class="k">Stockists</span><h3>取扱店</h3><ul><li>銀座 山野楽器 本店</li><li>代官山蔦屋書店</li><li>二子玉川 蔦屋家電</li></ul></div>
+    </div>
+    <div class="aw-media">
+      <div class="ph"><img src="img/media_01.jpg" alt="MH audioが掲載された雑誌のページ"></div>
+      <p>『Mac Fan』の特集「超快適デスクの作り方」では、デスクの音として紹介されました。『ステレオ時代』『Pen＋』『レコード芸術』にも掲載されています。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec products" id="products" data-sec="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 04</span><h2>The pieces</h2><p class="jp">製品</p></div>
+      <p class="lead">スピーカーとアンプ。音楽を聴く手段がレコードからスマホに変わっても、音を決めるのはこの2つです。だから<span class="nw">MH audio</span> は、この2つだけを作り続けています。</p>
+    </div>
+
+    <div class="pg-h"><h3>Speakers</h3><span>スピーカー</span></div>
+    <div class="pgrid">
+      <div class="p"><div class="ph"><img src="img/waon_19.jpg" alt="スピーカーWAON"></div><div class="bd"><span class="nm">WAON</span><span class="ty">和音 ・ アコースティックスピーカー</span><p>CDジャケットほどの木の箱。柿渋を10回以上塗り重ねた質感で、和室にも英国の家具にもなじみます。</p><span class="more">詳しく見る</span></div></div>
+      <div class="p"><div class="ph"><img src="img/waon_18.jpg" alt="ウォールナットのWAON"></div><div class="bd"><span class="nm">WAON-wn / take</span><span class="ty">ウォールナット ・ 竹</span><p>ウォールナットの天然木を貼った wn と、竹を使った引き締まった音の take。お部屋に合わせて選べます。</p><span class="more">詳しく見る</span></div></div>
+      <div class="p"><div class="ph"><img src="img/kion_04.jpg" alt="陶器のスピーカーKION"></div><div class="bd"><span class="nm">KION</span><span class="ty">輝音 ・ マイクロモニタースピーカー</span><p>陶器でできた、手のひらに乗るスピーカー。楽器や声の一つひとつを細かく描き出します。</p><span class="more">詳しく見る</span></div></div>
+    </div>
+
+    <div class="pg-h"><h3>Amplifiers</h3><span>アンプ・ヘッドホンアンプ</span></div>
+    <div class="pgrid">
+      <div class="p"><div class="ph"><img src="img/ua1_06.jpg" alt="真空管ハイブリッドアンプUA-1"></div><div class="bd"><span class="nm">UA-1</span><span class="ty">真空管ハイブリッドアンプ</span><p>真空管アンプの造りを小さな体に凝縮。本物の真空管の音を、手軽に楽しめます。</p><span class="more">詳しく見る</span></div></div>
+      <div class="p"><div class="ph"><img src="img/da1_02.jpg" alt="超小型アンプDA-1"></div><div class="bd"><span class="nm">DA-1</span><span class="ty">超小型デジタルアンプ</span><p>手のひらに収まる大きさで、WAON・KIONをしっかり鳴らします。ホテルの客室にも。</p><span class="more">詳しく見る</span></div></div>
+      <div class="p"><div class="ph"><img src="img/ha11_09.jpg" alt="ヘッドホンアンプHA-11"></div><div class="bd"><span class="nm">HA-11 / HA-1</span><span class="ty">ヘッドホンアンプ</span><p><span class="nw">HA-11</span> はオーディオ銘機賞2014を受賞。<span class="nw">HA-1</span> は持ち歩けるアナログのヘッドホンアンプです。</p><span class="more">詳しく見る</span></div></div>
+    </div>
+    <p class="pnote">ひとつずつ手作りのため、価格・納期はメールでご案内しています。</p>
+  </div>
+</section>
+
+<section class="sec reading" id="reading" data-sec="reading">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 05</span><h2>Notes</h2><p class="jp">読みもの</p></div>
+      <p class="lead">お店の音づくり、デスクの音、真空管のこと。選ぶ前に知っておきたいことを、作り手の言葉でまとめています。</p>
+    </div>
+    <ul class="rl">
+      <li><a href="#reading"><span class="n">01</span><span class="tg">ホテル</span><span class="tt">ホテルの客室に置くオーディオ：テレビの横に置ける本物の音</span><span class="im">掲載内容イメージ</span></a></li>
+      <li><a href="#reading"><span class="n">02</span><span class="tg">店舗のBGM</span><span class="tt">店舗のBGMスピーカーの選び方：会話を邪魔しない音とは</span><span class="im">掲載内容イメージ</span></a></li>
+      <li><a href="#reading"><span class="n">03</span><span class="tg">カフェ</span><span class="tt">カフェに合うスピーカー：小さくても店内に届く理由</span><span class="im">掲載内容イメージ</span></a></li>
+      <li><a href="#reading"><span class="n">04</span><span class="tg">デスク</span><span class="tt">デスクトップオーディオの始め方：スピーカーとアンプだけでいい</span><span class="im">掲載内容イメージ</span></a></li>
+      <li><a href="#reading"><span class="n">05</span><span class="tg">素材</span><span class="tt">木製スピーカーの音はなぜ柔らかいのか</span><span class="im">掲載内容イメージ</span></a></li>
+      <li><a href="#reading"><span class="n">06</span><span class="tg">真空管</span><span class="tt">小型の真空管アンプは寿命が短い？よくある心配に答えます</span><span class="im">掲載内容イメージ</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec maker" id="maker" data-sec="maker">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 06</span><h2>The maker</h2><p class="jp">作り手・工房</p></div>
+    </div>
+    <div class="mk">
+      <div class="phs">
+        <div class="a"><img src="img/ua1_12.jpg" alt="UA-1の部品"></div>
+        <div class="b"><img src="img/da1_09.jpg" alt="森の中のデスクに置いたWAON"></div>
+        <div class="b"><img src="img/about_05.jpg" alt="並んだWAONとアンプ"></div>
+      </div>
+      <div>
+        <h3>無意味な豪華さも、<br>大きさも、いらない。</h3>
+        <p>原点は、好きな音楽をただ気持ちよく聴きたいという想いでした。今までのオーディオがいかに無駄が多く、それが音を悪くしているかに気づいたとき、音のことだけを考えた小さなスピーカーとアンプをつくろうと決めました。</p>
+        <p>長野県富士見町の工房で、精密や家具の専門家の力を借りながら、ひとつずつ手で仕上げています。手作りのため、一台ずつ表情が少しずつ違います。</p>
+        <ul>
+          <li><b>性能</b><span>見かけの数字より、心に届く音を</span></li>
+          <li><b>デザイン</b><span>和にも洋にも、家にも仕事場にもなじむ形</span></li>
+          <li><b>手仕事</b><span>長く使える質感を、一品ずつ</span></li>
+        </ul>
+        <p class="sign"><b>Hoshino</b>MH audio 代表　星野</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec shops" id="shops" data-sec="shops">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="no">No. 07</span><h2>Listen in<br>person</h2><p class="jp">取扱店・ふるさと納税</p></div>
+      <p class="lead">手作りのため、限られたお店でだけ展示しています。実際の音を確かめてから、ご相談ください。</p>
+    </div>
+    <div class="sh">
+      <ul class="st">
+        <li><div><h4>銀座 山野楽器 本店</h4><p>試聴と販売</p></div><span class="ar">Ginza</span></li>
+        <li><div><h4>代官山 蔦屋書店</h4><p>1号館2階 音楽フロアで WAON・UA-1 を試聴</p></div><span class="ar">Daikanyama</span></li>
+        <li><div><h4>二子玉川 蔦屋家電</h4><p>1階 music コーナーで試聴</p></div><span class="ar">Futako-tamagawa</span></li>
+      </ul>
+      <div class="furu">
+        <span class="eyebrow">Furusato Nozei</span>
+        <h3 style="margin-top:10px">ふるさと納税の返礼品</h3>
+        <p>MH audio の製品は、長野県の2つの町と市で返礼品に選ばれています。</p>
+        <div class="tw">
+          <div><b>長野県 岡谷市</b><span>オーディオセット ・ ヘッドホンアンプ HA-1</span></div>
+          <div><b>長野県 富士見町</b><span>オーディオセット</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact" data-sec="contact">
+  <img src="img/katakura_03.jpg" alt="">
+  <div class="wrap in">
+    <div>
+      <span class="eyebrow">Consultation</span>
+      <h2 style="margin-top:18px">Begin with<br>a conversation.</h2>
+      <p>まずは、ご相談ください。</p>
+      <p class="lead">ホテルの客室、お店の売り場、ご自宅の机。どこで、どんなふうに鳴らしたいかをメールでお聞かせください。お部屋の広さや内装に合わせて、スピーカーの色とアンプの組み合わせをご提案します。</p>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><div><h4>メールでご相談</h4><p>使う場所・広さ・気になる製品をお書きください</p></div></li>
+      <li><span class="n">2</span><div><h4>1〜2日でお返事</h4><p>価格・納期・お支払い方法をメールでご案内します</p></div></li>
+      <li><span class="n">3</span><div><h4>製作・お届け</h4><p>ひとつずつ手作りで仕上げてお届けします</p></div></li>
+      <a href="#contact" class="btn">導入のご相談をする</a>
+      <p class="note">お店・ホテル・事務所でのご導入も、ご自宅用もこちらから</p>
+    </ol>
+  </div>
+</section>
+
+<footer data-sec="footer">
+  <div class="wrap">
+    <div class="in">
+      <div><a class="logo" href="#top">MH audio</a><p style="margin-top:14px">世界最小の本格オーディオ<br>長野県富士見町の工房から</p></div>
+      <div><h5>PRODUCTS</h5><ul><li>WAON</li><li>KION</li><li>UA-1</li><li>DA-1</li><li>HA-11 ・ HA-1</li></ul></div>
+      <div><h5>FOR BUSINESS</h5><ul><li><a href="#cases">導入事例</a></li><li><a href="#reasons">選ばれる理由</a></li><li><a href="#contact">導入のご相談</a></li></ul></div>
+      <div><h5>ABOUT</h5><ul><li><a href="#maker">工房</a></li><li><a href="#reading">読みもの</a></li><li><a href="#shops">取扱店</a></li><li><a href="#shops">ふるさと納税</a></li></ul></div>
+    </div>
+    <p class="cp">© MH audio — Handcrafted in Japan</p>
+  </div>
+</footer>
+
+<div class="badge">デザイン提案（株式会社hoshimi）／実際のサイトではありません</div>
+</body>
+</html>

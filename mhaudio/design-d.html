@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="ja">
+<head><meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MH audio 標本カタログ（デザイン案D）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF; --gray:#EDEEF0; --gray2:#D9DBDF; --mute:#6B6F76; --ink:#111111; --blue:#1F5BD8;
+  --pad:56px; --max:1328px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:"Inter","Noto Sans JP",sans-serif;font-weight:400;font-size:15px;line-height:1.85;letter-spacing:.02em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.num{font-family:"Inter",sans-serif;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.en{font-family:"Inter",sans-serif}
+.lbl{font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--gray2)}
+.hd{display:flex;align-items:center;height:60px;gap:32px}
+.logo{font-family:"Inter",sans-serif;font-weight:500;font-size:18px;letter-spacing:.04em;white-space:nowrap}
+.logo small{font-weight:300;font-size:11px;color:var(--mute);margin-left:10px;letter-spacing:.12em}
+.gnav{display:flex;gap:22px;margin-left:auto;font-size:13px}
+.gnav a{display:flex;gap:6px;align-items:baseline;white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent}
+.gnav a:hover{border-bottom-color:var(--blue)}
+.gnav a span{font-family:"Inter";font-size:10px;color:var(--mute)}
+.hd .ask{font-size:13px;border:1px solid var(--ink);padding:7px 16px;white-space:nowrap}
+.hd .ask:hover{border-color:var(--blue);color:var(--blue)}
+.mnav{display:none}
+
+/* ---------- hero ---------- */
+.hero{border-bottom:1px solid var(--gray2)}
+.hero-grid{display:grid;grid-template-columns:5fr 7fr;min-height:calc(100vh - 60px);max-height:900px}
+.hero-txt{padding:64px 48px 48px 0;display:flex;flex-direction:column;border-right:1px solid var(--gray2)}
+.hero-txt .lbl{margin-bottom:28px}
+.hero h1{font-family:"Inter",sans-serif;font-weight:300;font-size:84px;line-height:1.02;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;border-bottom:2px solid var(--blue)}
+.hero .jp{font-weight:300;font-size:28px;line-height:1.5;margin-top:26px;letter-spacing:.06em}
+.hero .lead{font-weight:300;font-size:15px;color:#33363b;margin-top:18px;max-width:30em}
+.spec{margin-top:auto;border-top:1px solid var(--ink)}
+.spec div{display:grid;grid-template-columns:88px 1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray2);font-size:13px;align-items:baseline}
+.spec dt{font-family:"Inter";font-weight:500}
+.spec dd:last-child{color:var(--mute);font-size:12px}
+.cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;font-size:14px;border:1px solid var(--ink);white-space:nowrap}
+.btn.solid{background:var(--ink);color:#fff}
+.btn:hover{border-color:var(--blue)}
+.btn .ar{font-family:"Inter"}
+
+.plate{position:relative;padding:40px 0 32px 48px;display:grid;grid-template-rows:auto 1fr;gap:20px;
+  background-image:linear-gradient(var(--gray) 1px,transparent 1px),linear-gradient(90deg,var(--gray) 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px}
+.fig-main{position:relative;background:#fff;border:1px solid var(--gray2)}
+.fig-main img{width:100%;aspect-ratio:1600/901;object-fit:cover}
+.fm{position:relative}
+.fig-main svg{position:absolute;inset:0;width:100%;height:100%}
+.dim line,.dim path{stroke:var(--blue);stroke-width:2.2;fill:none}
+.dim text{fill:var(--blue);font-family:"Inter";font-size:30px;font-weight:500;letter-spacing:.04em}
+.dim .ext{stroke-dasharray:6 6;stroke-width:1.4}
+.figcap{display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--mute);padding:8px 12px;border-top:1px solid var(--gray2);background:#fff}
+.figcap b{font-family:"Inter";font-weight:500;color:var(--ink)}
+.fig-row{display:grid;grid-template-columns:1fr 1.25fr;gap:20px}
+.fig-sub{background:#fff;border:1px solid var(--gray2);display:flex;flex-direction:column}
+.fig-sub .ph{position:relative;flex:1;min-height:0}
+.fig-sub .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.fig-sub .ph i{position:absolute;left:10px;top:10px;font-style:normal;font-family:"Inter";font-size:11px;color:#fff;letter-spacing:.12em}
+.compare{padding:16px 18px 6px;flex:1;display:flex;flex-direction:column}
+.compare svg{width:100%;height:auto;flex:1}
+.compare .t{font-size:12px;color:var(--mute)}
+/* the only motion: dimension lines draw in once */
+.draw{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 1.4s .3s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.draw{animation:none;stroke-dashoffset:0}}
+
+/* ---------- section common ---------- */
+section{border-bottom:1px solid var(--gray2)}
+.sec{padding-top:104px;padding-bottom:104px}
+.sh{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:end;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--ink)}
+.sh .no{font-family:"Inter";font-weight:300;font-size:56px;line-height:.9;letter-spacing:-.03em}
+.sh h2{font-weight:400;font-size:30px;line-height:1.4;letter-spacing:.05em}
+.sh h2 small{display:block;font-family:"Inter";font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-bottom:6px}
+.sh p{font-size:13px;color:var(--mute);max-width:28em;text-align:right;font-weight:300}
+
+/* ---------- entrances ---------- */
+.ent{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--gray2)}
+.ent a{display:grid;grid-template-columns:1fr 1fr;min-height:340px}
+.ent a+a{border-left:1px solid var(--gray2)}
+.ent .ph{background:var(--gray);overflow:hidden}
+.ent .ph img{width:100%;height:100%;object-fit:cover}
+.ent .tx{padding:32px 30px;display:flex;flex-direction:column}
+.ent .tx .lbl{margin-bottom:10px}
+.ent h3{font-weight:400;font-size:24px;line-height:1.45}
+.ent ul{list-style:none;margin-top:18px;font-size:13px}
+.ent li{padding:7px 0;border-top:1px solid var(--gray2);display:flex;gap:10px}
+.ent li span{font-family:"Inter";color:var(--mute);font-size:11px;width:2em}
+.ent .go{margin-top:auto;padding-top:20px;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid var(--blue);padding-bottom:6px}
+
+/* ---------- reasons ---------- */
+.rs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gray2);border-left:1px solid var(--gray2)}
+.r{border-right:1px solid var(--gray2);border-bottom:1px solid var(--gray2);padding:28px 26px 30px;display:flex;flex-direction:column;min-height:330px}
+.r .lbl{display:flex;justify-content:space-between}
+.r svg{width:100%;height:92px;margin:22px 0 18px}
+.r svg *{stroke:var(--blue);fill:none;stroke-width:1.6}
+.r svg .g{stroke:var(--gray2)}
+.r h3{font-weight:500;font-size:18px;line-height:1.5}
+.r p{font-size:13px;color:#3d4046;margin-top:10px;font-weight:300}
+.r .src{margin-top:auto;padding-top:14px;font-size:11px;color:var(--mute);border-top:1px dashed var(--gray2)}
+
+/* ---------- cases ---------- */
+.cg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}
+.c .sq{aspect-ratio:1/1;overflow:hidden;background:var(--gray);position:relative}
+.c .sq img{width:100%;height:100%;object-fit:cover}
+.c .tag{position:absolute;left:0;top:0;background:#fff;font-size:11px;padding:4px 10px;letter-spacing:.1em;border-right:1px solid var(--gray2);border-bottom:1px solid var(--gray2)}
+.c .tag b{font-family:"Inter";font-weight:500;margin-right:6px;color:var(--blue)}
+.c .noimg{display:flex;flex-direction:column;justify-content:flex-end;padding:22px;height:100%;background-image:linear-gradient(var(--gray2) 1px,transparent 1px),linear-gradient(90deg,var(--gray2) 1px,transparent 1px);background-size:24px 24px;background-color:#F6F7F8}
+.c .noimg .big{font-family:"Inter";font-weight:300;font-size:44px;line-height:1;letter-spacing:-.02em}
+.c .noimg .q{word-break:normal;font-size:12px;color:#3d4046;margin-top:12px;line-height:1.7}
+.c .meta{padding-top:12px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:12px}
+.c .meta .nm{grid-column:1/3;font-size:15px;font-weight:500;line-height:1.5}
+.c .meta dt{color:var(--mute)}
+.c.all .sq{border:1px solid var(--ink);background:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:22px}
+.c.all ol{list-style:none;font-size:12px;columns:1}
+.c.all li{border-bottom:1px solid var(--gray2);padding:3px 0;display:flex;justify-content:space-between}
+.c.all li span{font-family:"Inter";color:var(--mute)}
+.c.all .go{font-size:14px;display:flex;justify-content:space-between;border-bottom:1px solid var(--blue);padding-bottom:6px}
+
+/* ---------- awards ---------- */
+.aw{display:grid;grid-template-columns:1fr 360px;gap:48px}
+.at{width:100%;border-collapse:collapse;font-size:14px}
+.at th,.at td{text-align:left;vertical-align:top;padding:18px 12px;border-bottom:1px solid var(--gray2)}
+.at th{width:150px;font-weight:500;font-size:13px}
+.at th span{display:block;font-family:"Inter";font-size:10px;letter-spacing:.16em;color:var(--mute);font-weight:400}
+.at td.y{width:96px;font-family:"Inter";color:var(--mute);font-size:13px}
+.at tr:first-child th,.at tr:first-child td{border-top:1px solid var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--gray2);padding:3px 12px;font-size:13px;white-space:nowrap}
+.aw figure{border:1px solid var(--gray2)}
+.aw figure img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.aw figcaption{font-size:12px;color:var(--mute);padding:10px 12px;border-top:1px solid var(--gray2)}
+.medal{margin-top:20px;border:1px solid var(--blue);padding:20px 22px}
+.medal .y{font-family:"Inter";font-weight:300;font-size:48px;line-height:1;letter-spacing:-.02em}
+.medal p{font-size:13px;margin-top:8px}
+
+/* ---------- products ---------- */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--gray2);border-left:1px solid var(--gray2)}
+.p{border-right:1px solid var(--gray2);border-bottom:1px solid var(--gray2);display:flex;flex-direction:column}
+.p .ph{aspect-ratio:4/3;overflow:hidden;background:var(--gray);border-bottom:1px solid var(--gray2)}
+.p .ph img{width:100%;height:100%;object-fit:cover}
+.p .bd{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.p .top{display:flex;justify-content:space-between;align-items:baseline}
+.p h3{font-family:"Inter";font-weight:400;font-size:30px;letter-spacing:-.01em;line-height:1.1}
+.p .kind{font-size:12px;color:var(--mute)}
+.p .d{font-size:13px;margin:12px 0 16px;color:#3d4046;font-weight:300}
+.p table{width:100%;border-collapse:collapse;font-size:12px;margin-top:auto}
+.p td{padding:6px 0;border-top:1px solid var(--gray2)}
+.p td:first-child{color:var(--mute);width:5.5em}
+.p td:last-child{font-family:"Inter";text-align:right}
+
+/* ---------- reading ---------- */
+.rd{width:100%;border-collapse:collapse}
+.rd td{padding:22px 12px;border-bottom:1px solid var(--gray2);vertical-align:middle}
+.rd tr:first-child td{border-top:1px solid var(--ink)}
+.rd .n{font-family:"Inter";font-weight:300;font-size:28px;width:90px;color:var(--mute)}
+.rd .k{width:170px;font-size:12px}
+.rd .k span{border:1px solid var(--gray2);padding:2px 10px;white-space:nowrap}
+.rd .ti{font-size:19px;font-weight:400;line-height:1.55}
+.rd .ar{width:60px;text-align:right;font-family:"Inter";color:var(--blue)}
+.rd tr:hover .ti{text-decoration:underline;text-decoration-color:var(--blue);text-underline-offset:6px}
+.note{font-size:12px;color:var(--mute);margin-top:14px}
+
+/* ---------- maker ---------- */
+.mk{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.mk .ims{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mk .ims figure:first-child{grid-column:1/3}
+.mk figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.mk figcaption{font-size:11px;color:var(--mute);padding-top:6px}
+.mk blockquote{font-weight:300;font-size:26px;line-height:1.65;letter-spacing:.04em;border-left:2px solid var(--blue);padding-left:24px}
+.mk .body{margin-top:28px;font-size:14px;font-weight:300}
+.mk .body p+p{margin-top:14px}
+.prn{margin-top:32px;border-top:1px solid var(--ink)}
+.prn div{display:grid;grid-template-columns:44px 140px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--gray2);font-size:13px}
+.prn span{font-family:"Inter";color:var(--mute)}
+.prn b{font-weight:500}
+
+/* ---------- shops ---------- */
+.sp{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.box{border:1px solid var(--gray2);padding:28px}
+.box h3{font-size:15px;font-weight:500;display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+.box h3 span{font-family:"Inter";font-size:11px;letter-spacing:.16em;color:var(--mute);font-weight:400}
+.shl{list-style:none}
+.shl li{display:grid;grid-template-columns:40px 1fr auto;gap:12px;padding:16px 0;border-bottom:1px solid var(--gray2);font-size:15px;align-items:baseline}
+.shl li span{font-family:"Inter";color:var(--mute);font-size:12px}
+.shl li em{font-style:normal;font-size:12px;color:var(--mute)}
+
+/* ---------- contact ---------- */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.steps{border-top:1px solid var(--ink)}
+.steps>div{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--gray2)}
+.steps span{font-family:"Inter";font-weight:300;font-size:24px;line-height:1.2;color:var(--blue)}
+.steps b{font-weight:500;display:block;font-size:15px}
+.steps p{font-size:13px;color:#3d4046;font-weight:300}
+.ct .intro{font-size:22px;font-weight:300;line-height:1.6;margin-bottom:24px}
+form{border:1px solid var(--gray2);padding:32px}
+.f{margin-bottom:18px}
+.f label{display:block;font-size:12px;color:var(--mute);margin-bottom:6px}
+.f input,.f textarea{width:100%;border:0;border-bottom:1px solid var(--ink);padding:8px 0;font:inherit;font-size:15px;background:transparent;border-radius:0}
+.f input:focus,.f textarea:focus{outline:none;border-bottom-color:var(--blue)}
+.f textarea{height:110px;resize:vertical}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{border:1px solid var(--gray2);padding:8px 14px;font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:center;margin:0;cursor:pointer}
+.radios input{width:auto;accent-color:var(--ink)}
+form .btn{width:100%;justify-content:center;margin-top:8px;font-family:inherit;cursor:pointer}
+form small{display:block;font-size:11px;color:var(--mute);margin-top:12px}
+
+/* ---------- footer ---------- */
+footer{padding:64px 0 96px}
+.ft{display:grid;grid-template-columns:1.3fr 2fr;gap:48px}
+.ft .logo{font-size:22px}
+.ft p{font-size:12px;color:var(--mute);margin-top:10px}
+.ftl{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 24px;font-size:13px}
+.ftl a{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--gray2)}
+.ftl a span{font-family:"Inter";color:var(--mute);font-size:11px;width:2em}
+.copy{margin-top:48px;font-family:"Inter";font-size:11px;color:var(--mute);letter-spacing:.08em}
+
+.demo{position:fixed;right:16px;bottom:16px;z-index:99;background:#fff;border:1px solid var(--ink);font-size:11px;padding:7px 12px;line-height:1.5}
+
+/* ---------- responsive ---------- */
+@media (max-width:1200px){
+  .gnav{gap:14px;font-size:12px}
+  .gnav a span{display:none}
+  .hero h1{font-size:68px}
+}
+@media (max-width:1000px){
+  :root{--pad:32px}
+  .gnav{display:none}
+  .hero-grid{grid-template-columns:1fr;max-height:none;min-height:0}
+  .hero-txt{border-right:0;padding:48px 0 32px}
+  .plate{padding:24px 0 32px}
+  .rs{grid-template-columns:1fr 1fr}
+  .cg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pg{grid-template-columns:1fr 1fr}
+  .aw,.mk,.ct,.sp,.ft{grid-template-columns:1fr}
+  .ent{grid-template-columns:1fr}
+  .ent a+a{border-left:0;border-top:1px solid var(--gray2)}
+  .mnav{display:block;margin-left:auto}
+  .mnav summary{list-style:none;font-size:13px;border:1px solid var(--ink);padding:6px 14px;cursor:pointer}
+  .mnav summary::-webkit-details-marker{display:none}
+  .mnav nav{position:absolute;left:0;right:0;top:60px;background:#fff;border-bottom:1px solid var(--ink);padding:8px var(--pad) 16px;display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+  .mnav nav a{padding:10px 0;border-bottom:1px solid var(--gray2);font-size:14px;display:flex;gap:10px}
+  .mnav nav a span{font-family:"Inter";color:var(--mute);font-size:11px}
+  .mnav:not([open]) nav{display:none}
+  .hd .ask{display:none}
+}
+@media (max-width:640px){
+  :root{--pad:16px}
+  body{font-size:14px}
+  .logo small{display:none}
+  .hero h1{font-size:50px}
+  .hero .jp{font-size:21px;margin-top:18px}
+  .spec{margin-top:28px}
+  .spec div{grid-template-columns:64px 1fr;font-size:12px}
+  .spec dd:last-child{display:none}
+  .hero-grid{display:flex;flex-direction:column;padding-top:36px;padding-bottom:36px}
+  .hero-txt{display:contents}
+  .hero-txt .lbl{order:1;margin-bottom:16px}
+  .hero h1{order:2}
+  .hero .jp{order:3}
+  .plate{order:4;padding:20px 0 0;background:none}
+  .hero .lead{order:5}
+  .spec{order:6}
+  .cta{order:7}
+  .cta .btn{flex:1;justify-content:center}
+  .fig-row{grid-template-columns:1fr}
+  .fig-sub .ph img{aspect-ratio:4/3}
+  .figcap{flex-direction:column;gap:2px}
+  .dim text{font-size:44px}
+  .sec{padding-top:64px;padding-bottom:64px}
+  .sh{grid-template-columns:64px 1fr;gap:12px;margin-bottom:32px}
+  .sh .no{font-size:38px}
+  .sh h2{font-size:22px}
+  .sh p{grid-column:1/3;text-align:left}
+  .ent a{grid-template-columns:1fr;min-height:0}
+  .ent .ph{aspect-ratio:16/10}
+  .ent .tx{padding:24px 20px}
+  .rs{grid-template-columns:1fr}
+  .r{min-height:0}
+  .cg{gap:22px 12px}
+  .c .noimg{padding:14px}
+  .c .noimg .big{font-size:30px}
+  .c .noimg .q{font-size:11px}
+  .c .meta{grid-template-columns:1fr;font-size:11px}
+  .c .meta .nm{grid-column:1;font-size:13px}
+  .c .meta dt{display:none}
+  .c.all .sq{padding:14px}
+  .c.all li{font-size:11px}
+  .pg{grid-template-columns:1fr}
+  .at th{width:96px}
+  .at td.y{width:64px}
+  .at th,.at td{padding:14px 6px;font-size:13px}
+  .rd .k{display:none}
+  .rd .n{width:58px;font-size:16px;white-space:nowrap;padding-left:0}
+  .rd{table-layout:fixed}
+  .rd .ti{font-size:15px;word-break:normal;padding-right:4px}
+  .rd .ar{width:24px}
+  .mk blockquote{font-size:20px;padding-left:16px}
+  .prn div{grid-template-columns:32px 1fr}
+  .prn div p{grid-column:2}
+  .box{padding:20px}
+  .shl li{grid-template-columns:28px 1fr;font-size:14px}
+  .shl li em{grid-column:2}
+  form{padding:20px}
+  .ftl{grid-template-columns:1fr 1fr}
+  .demo{left:16px;right:16px;bottom:10px;text-align:center;font-size:10px}
+  footer{padding-bottom:120px}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. header -->
+<header data-sec="header">
+  <div class="wrap hd">
+    <a href="#top" class="logo">MH audio<small>FUJIMI, NAGANO</small></a>
+    <nav class="gnav" aria-label="メニュー">
+      <a href="#s01"><span>01</span>入口</a>
+      <a href="#s02"><span>02</span>選ばれる理由</a>
+      <a href="#s03"><span>03</span>導入事例</a>
+      <a href="#s04"><span>04</span>評価</a>
+      <a href="#s05"><span>05</span>製品</a>
+      <a href="#s06"><span>06</span>読みもの</a>
+      <a href="#s07"><span>07</span>作り手</a>
+      <a href="#s08"><span>08</span>取扱店</a>
+    </nav>
+    <a href="#s09" class="ask">09 ご相談</a>
+    <details class="mnav">
+      <summary>目次</summary>
+      <nav>
+        <a href="#s01"><span>01</span>入口</a><a href="#s02"><span>02</span>選ばれる理由</a>
+        <a href="#s03"><span>03</span>導入事例</a><a href="#s04"><span>04</span>評価・実績</a>
+        <a href="#s05"><span>05</span>製品</a><a href="#s06"><span>06</span>読みもの</a>
+        <a href="#s07"><span>07</span>作り手</a><a href="#s08"><span>08</span>取扱店</a>
+        <a href="#s09"><span>09</span>ご相談</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<!-- 2. hero -->
+<section class="hero" data-sec="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-txt">
+      <p class="lbl">Catalogue No.00 — 世界最小の本格オーディオ</p>
+      <h1>Small is<br><em>accurate.</em></h1>
+      <p class="jp">小さいから、<br>正確に鳴る。</p>
+      <p class="lead">CDジャケットほどのスピーカーと、手のひらに乗るアンプ。<br>大きく複雑なものが良い音がする…本当でしょうか？</p>
+      <dl class="spec">
+        <div><dt>WAON</dt><dd>W124 × H124 × D142 mm</dd><dd>スピーカー</dd></div>
+        <div><dt>DA-1</dt><dd>W57 × H26 × D88 mm／約140g</dd><dd>アンプ</dd></div>
+        <div><dt>出力</dt><dd>10W + 10W（8Ω）</dd><dd>DA-1</dd></div>
+      </dl>
+      <div class="cta">
+        <a href="#s05" class="btn">寸法と仕様を見る <span class="ar">→</span></a>
+        <a href="#s09" class="btn solid">まずはご相談ください <span class="ar">→</span></a>
+      </div>
+    </div>
+
+    <div class="plate">
+      <figure class="fig-main"><div class="fm">
+        <img src="img/waon_13.jpg" alt="スピーカーWAONの正面と背面。白い背景の上に2台">
+        <svg viewBox="0 0 1600 901" preserveAspectRatio="none" class="dim" aria-hidden="true">
+          <!-- width of front face -->
+          <line class="ext" x1="360" y1="735" x2="360" y2="820"/>
+          <line class="ext" x1="764" y1="735" x2="764" y2="820"/>
+          <path class="draw" d="M360 800 H764 M360 788 V812 M764 788 V812"/>
+          <text x="480" y="862">W 124 mm</text>
+          <!-- height -->
+          <line class="ext" x1="230" y1="238" x2="120" y2="238"/>
+          <line class="ext" x1="230" y1="726" x2="120" y2="726"/>
+          <path class="draw" d="M140 238 V726 M128 238 H152 M128 726 H152"/>
+          <text x="40" y="200">H 124 mm</text>
+        </svg></div>
+        <figcaption class="figcap"><span><b>Fig.01</b>　スピーカー WAON（左：正面／右：背面）</span><span>柿渋を10回以上重ねた木の箱</span></figcaption>
+      </figure>
+      <div class="fig-row">
+        <figure class="fig-sub">
+          <div class="ph"><img src="img/da1_01.jpg" alt="手のひらに乗せたアンプDA-1の2台（シルバーとブラック）"><i>FIG.02</i></div>
+          <figcaption class="figcap"><span><b>DA-1</b>　手のひらに収まるアンプ</span></figcaption>
+        </figure>
+        <figure class="fig-sub">
+          <div class="compare">
+            <span class="t">Fig.03　大きさの比較（縮尺をそろえた線画）</span>
+            <svg viewBox="0 0 240 200" aria-label="CDジャケット、WAON、DA-1の大きさを同じ縮尺で重ねた図">
+              <g fill="none">
+                <rect x="8" y="50" width="142" height="125" stroke="#9AA0A8" stroke-width="1" stroke-dasharray="4 3"/>
+                <rect x="8" y="51" width="124" height="124" stroke="#1F5BD8" stroke-width="1.4"/>
+                <circle cx="70" cy="120" r="36" stroke="#1F5BD8" stroke-width="1"/>
+                <rect x="172" y="87" width="57" height="88" stroke="#1F5BD8" stroke-width="1.4"/>
+                <circle cx="210" cy="100" r="5" stroke="#1F5BD8" stroke-width="1"/>
+                <line x1="2" y1="175" x2="238" y2="175" stroke="#111" stroke-width=".8"/>
+                <path d="M172 190 H222 M172 186 V194 M222 186 V194" stroke="#111" stroke-width=".8"/>
+              </g>
+              <g font-family="Inter, Noto Sans JP, sans-serif" font-size="8.5" fill="#111">
+                <text x="8" y="42" fill="#6B6F76">CDジャケット（点線）</text>
+                <text x="14" y="64" fill="#1F5BD8">WAON 正面</text>
+                <text x="14" y="75" fill="#1F5BD8">124 × 124 mm</text>
+                <text x="172" y="66" fill="#1F5BD8">DA-1 上面</text>
+                <text x="172" y="78" fill="#1F5BD8">57 × 88 mm</text>
+                <text x="132" y="193" fill="#111">50 mm</text>
+              </g>
+            </svg>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. entrances -->
+<section data-sec="entrances" id="s01">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">01</span>
+      <h2><small>Two entrances</small>どこで使いますか</h2>
+      <p>使う場所によって、選ぶ組み合わせが変わります。まずは近い方からお入りください。</p>
+    </div>
+    <div class="ent">
+      <a href="#s03">
+        <div class="ph"><img src="img/katakura_03.jpg" alt="かたくらシルクホテルの客室"></div>
+        <div class="tx">
+          <span class="lbl">A — For business</span>
+          <h3>店舗・ホテルで使う</h3>
+          <ul>
+            <li><span>A1</span>ホテルの客室・ロビー</li>
+            <li><span>A2</span>カフェ・飲食店のBGM</li>
+            <li><span>A3</span>書店・ギャラリー・売り場</li>
+            <li><span>A4</span>事務所・放送局のエントランス</li>
+          </ul>
+          <span class="go">事例と組み合わせを見る<span class="num">→</span></span>
+        </div>
+      </a>
+      <a href="#s05">
+        <div class="ph"><img src="img/waon_17.jpg" alt="デスクに置いたWAONとアンプ"></div>
+        <div class="tx">
+          <span class="lbl">B — For home</span>
+          <h3>ご自宅・デスクで楽しむ</h3>
+          <ul>
+            <li><span>B1</span>デスクのパソコンの横に</li>
+            <li><span>B2</span>リビングのテレビの横に</li>
+            <li><span>B3</span>ヘッドホンでじっくり聴く</li>
+            <li><span>B4</span>持ち出して外で鳴らす</li>
+          </ul>
+          <span class="go">製品と寸法を見る<span class="num">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. reasons -->
+<section data-sec="reasons" id="s02">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">02</span>
+      <h2><small>Why MH audio</small>選ばれる理由</h2>
+      <p>音の大きさではなく、届き方で選ばれています。</p>
+    </div>
+    <div class="rs">
+      <div class="r">
+        <span class="lbl"><span>R-01</span><span>Low volume</span></span>
+        <svg viewBox="0 0 240 92"><line class="g" x1="0" y1="46" x2="240" y2="46"/><path d="M0 46 C20 20 40 72 60 46 S100 20 120 46 S160 72 180 46 S220 20 240 46"/></svg>
+        <h3>大音量でなくても、<br>よく聴こえる</h3>
+        <p>小さな音でも空間の隅々まで届きます。広い店内でも音量を上げずに済みます。</p>
+        <span class="src">六本木蔦屋書店様：1階のフロアをWAON 6本で</span>
+      </div>
+      <div class="r">
+        <span class="lbl"><span>R-02</span><span>Conversation</span></span>
+        <svg viewBox="0 0 240 92"><rect x="10" y="22" width="90" height="48"/><rect x="140" y="22" width="90" height="48" class="g"/><line x1="100" y1="46" x2="140" y2="46"/></svg>
+        <h3>会話を邪魔しない</h3>
+        <p>声や楽曲ははっきり聴こえ、それでいて耳障りにならない音です。</p>
+        <span class="src">ベイエフエム様のエンジニアの方の感想より</span>
+      </div>
+      <div class="r">
+        <span class="lbl"><span>R-03</span><span>All day</span></span>
+        <svg viewBox="0 0 240 92"><line class="g" x1="0" y1="80" x2="240" y2="80"/><line class="g" x1="0" y1="12" x2="240" y2="12"/><path d="M0 50 H240"/><path d="M0 46 V54 M240 46 V54"/></svg>
+        <h3>一日聴いても疲れない</h3>
+        <p>小音量でもバランスが崩れません。営業時間中、ずっと流していられます。</p>
+        <span class="src">WAONの製品説明より</span>
+      </div>
+      <div class="r">
+        <span class="lbl"><span>R-04</span><span>Footprint</span></span>
+        <svg viewBox="0 0 240 92"><rect class="g" x="20" y="8" width="200" height="80"/><rect x="20" y="28" width="60" height="60"/><rect x="92" y="54" width="28" height="34"/></svg>
+        <h3>小さくて、<br>場所を取らない</h3>
+        <p>底面に三脚用のネジ穴。天井や梁、壁にもさりげなく取り付けられます。</p>
+        <span class="src">セラ真澄様：130㎡余をWAON 4本で</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. cases -->
+<section data-sec="cases" id="s03">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">03</span>
+      <h2><small>Case index</small>お客様の事例</h2>
+      <p>業種ごとに並べ、1ページで全部見渡せるようにしました。</p>
+    </div>
+    <div class="cg">
+      <article class="c">
+        <div class="sq"><img src="img/katakura_02.jpg" alt="かたくらシルクホテルの客室"><span class="tag"><b>01</b>ホテル</span></div>
+        <dl class="meta"><span class="nm">かたくらシルクホテル様</span><dt>場所</dt><dd>長野県諏訪市</dd><dt>導入</dt><dd>全室にWAONのセット</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><div class="noimg"><span class="big">2 sets</span><span class="q">間取り図の段階からスピーカーの位置をご相談</span></div><span class="tag"><b>02</b>宿</span></div>
+        <dl class="meta"><span class="nm">SUNPIKA TOKYO様</span><dt>場所</dt><dd>東京都</dd><dt>導入</dt><dd>WAONとアンプ 2セット</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><img src="img/tsutaya_07.jpg" alt="六本木蔦屋書店の店内"><span class="tag"><b>03</b>書店</span></div>
+        <dl class="meta"><span class="nm">六本木蔦屋書店様</span><dt>場所</dt><dd>東京都港区</dd><dt>導入</dt><dd>1階をWAON 6本</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><div class="noimg"><span class="big">WAON<br>+ UA-1</span><span class="q">計画の段階から音響をご相談</span></div><span class="tag"><b>04</b>美術館</span></div>
+        <dl class="meta"><span class="nm">東京タロット美術館様</span><dt>場所</dt><dd>東京都浅草橋</dd><dt>導入</dt><dd>WAON＋UA-1</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><img src="img/tarot_03.jpg" alt="CAFÉ Tarotの店内"><span class="tag"><b>05</b>カフェ</span></div>
+        <dl class="meta"><span class="nm">CAFÉ Tarot（カフェタロー）様</span><dt>場所</dt><dd>東京都浅草橋</dd><dt>導入</dt><dd>WAON＋UA-1</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><img src="img/manruyama_03.jpg" alt="和食レストラン万る山の客席"><span class="tag"><b>06</b>和食</span></div>
+        <dl class="meta"><span class="nm">和食レストラン「万る山」様</span><dt>場所</dt><dd>長野県安曇野市</dd><dt>導入</dt><dd>WAON 4本＋DA-1</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><div class="noimg"><span class="big">+1 set</span><span class="q">取り付けた大工さんが気に入り、もう1セット</span></div><span class="tag"><b>07</b>イタリアン</span></div>
+        <dl class="meta"><span class="nm">イル・ポルトローネ様</span><dt>場所</dt><dd>東京都北千住</dd><dt>導入</dt><dd>MH audioのセット</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><img src="img/masumi_04.jpg" alt="セラ真澄の店内と梁の上のWAON"><span class="tag"><b>08</b>酒蔵</span></div>
+        <dl class="meta"><span class="nm">宮坂醸造「セラ真澄」様</span><dt>場所</dt><dd>長野県諏訪市</dd><dt>導入</dt><dd>WAON 4本</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><img src="img/bayfm_02.jpg" alt="ベイエフエムのロビーの壁に付けたWAON"><span class="tag"><b>09</b>放送局</span></div>
+        <dl class="meta"><span class="nm">ベイエフエム「bayfm78」様</span><dt>場所</dt><dd>千葉市美浜区</dd><dt>導入</dt><dd>WAON（ロビー）</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><div class="noimg"><span class="big">10 yrs+</span><span class="q">店舗・工房・梱包室まで、同じ音で</span></div><span class="tag"><b>10</b>菓子工房</span></div>
+        <dl class="meta"><span class="nm">菓子工房 キャトル・セゾン様</span><dt>場所</dt><dd>長野県富士見町</dd><dt>導入</dt><dd>WAON＋UA-1／DA-1</dd></dl>
+      </article>
+      <article class="c">
+        <div class="sq"><div class="noimg"><span class="big">WAON</span><span class="q">「なんでこんなに可愛いのに、凄い音するの？！」</span></div><span class="tag"><b>11</b>ベーカリー</span></div>
+        <dl class="meta"><span class="nm">太養パン様</span><dt>場所</dt><dd>長野県諏訪市</dd><dt>導入</dt><dd>本店にWAON</dd></dl>
+      </article>
+      <article class="c all">
+        <a href="#s03" class="sq">
+          <span class="lbl">Index — 16 cases</span>
+          <ol>
+            <li>ホテル・宿<span>A1</span></li>
+            <li>書店・美術館<span>A3</span></li>
+            <li>カフェ・飲食<span>A2</span></li>
+            <li>酒蔵・菓子・パン<span>A3</span></li>
+            <li>放送局・事務所<span>A4</span></li>
+          </ol>
+          <span class="go">16件すべてを見る<span class="num">→</span></span>
+        </a>
+        <dl class="meta"><span class="nm">業種で絞り込む</span><dt>並び</dt><dd>ホテルが先頭</dd></dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6. awards -->
+<section data-sec="awards" id="s04">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">04</span>
+      <h2><small>Records</small>評価・実績</h2>
+      <p>賞・雑誌・ご愛用の方・取り扱うお店を、1つの表にまとめました。</p>
+    </div>
+    <div class="aw">
+      <table class="at">
+        <tr><th><span>AWARD</span>受賞</th><td class="y">2014</td><td>ヘッドホンアンプ HA-11 が「オーディオ銘機賞2014」に選ばれました</td></tr>
+        <tr><th><span>PRESS</span>雑誌への掲載</th><td class="y">—</td><td><div class="chips"><span>レコード芸術</span><span>Mac Fan</span><span>Pen＋</span><span>ステレオ時代</span></div></td></tr>
+        <tr><th><span>USER</span>ご愛用の方</th><td class="y">—</td><td>指揮者 小林研一郎様（使用先一覧に掲載）</td></tr>
+        <tr><th><span>DEALER</span>取扱店</th><td class="y">—</td><td>銀座 山野楽器 本店／代官山蔦屋書店／二子玉川 蔦屋家電</td></tr>
+        <tr><th><span>HOMETOWN</span>ふるさと納税</th><td class="y">—</td><td>長野県岡谷市・富士見町の返礼品に採用</td></tr>
+      </table>
+      <div>
+        <figure>
+          <img src="img/media_01.jpg" alt="MH audioが紹介された雑誌の誌面">
+          <figcaption>雑誌に掲載された誌面</figcaption>
+        </figure>
+        <div class="medal">
+          <span class="lbl">Audio Meiki Award</span>
+          <div class="y">2014</div>
+          <p>HA-11　オーディオ銘機賞</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. products -->
+<section data-sec="products" id="s05">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">05</span>
+      <h2><small>Products</small>製品と寸法</h2>
+      <p>すべての製品に、寸法を書いています。置く場所に合うか、数字で確かめられます。</p>
+    </div>
+    <div class="pg">
+      <article class="p">
+        <div class="ph"><img src="img/waon_11.jpg" alt="スピーカーWAON"></div>
+        <div class="bd">
+          <div class="top"><h3>WAON</h3><span class="kind">スピーカー</span></div>
+          <p class="d">CDジャケットほどの大きさ。柿渋を10回以上重ねた木の箱。</p>
+          <table><tr><td>寸法</td><td>W124×H124×D142 mm</td></tr><tr><td>口径</td><td>8 cm フルレンジ</td></tr><tr><td>周波数</td><td>60 Hz – 20 kHz</td></tr></table>
+        </div>
+      </article>
+      <article class="p">
+        <div class="ph"><img src="img/waon_12.jpg" alt="WAONの木の違う2台"></div>
+        <div class="bd">
+          <div class="top"><h3>WAON-take / wn</h3><span class="kind">スピーカー</span></div>
+          <p class="d">竹（take）とウォールナット（wn）の箱。大きさはWAONと同じ。</p>
+          <table><tr><td>寸法</td><td>W124×H124×D142 mm</td></tr><tr><td>素材</td><td>竹／ウォールナット</td></tr><tr><td>口径</td><td>8 cm フルレンジ</td></tr></table>
+        </div>
+      </article>
+      <article class="p">
+        <div class="ph"><img src="img/kion_04.jpg" alt="陶器のスピーカーKION"></div>
+        <div class="bd">
+          <div class="top"><h3>KION</h3><span class="kind">スピーカー</span></div>
+          <p class="d">手のひらに乗る陶器のスピーカー。楽器や声をくっきり鳴らします。</p>
+          <table><tr><td>寸法</td><td>約 W80×H80×D100 mm</td></tr><tr><td>口径</td><td>5 cm フルレンジ</td></tr><tr><td>素材</td><td>陶器（一品ずつ異なる）</td></tr></table>
+        </div>
+      </article>
+      <article class="p">
+        <div class="ph"><img src="img/ua1_10.jpg" alt="手のひらに乗せた真空管アンプUA-1"></div>
+        <div class="bd">
+          <div class="top"><h3>UA-1</h3><span class="kind">真空管アンプ</span></div>
+          <p class="d">真空管とトランジスタを組み合わせた、手のひらに乗るアンプ。</p>
+          <table><tr><td>真空管</td><td>12AU7（ECC82）</td></tr><tr><td>入力</td><td>ミニ／RCA／USB</td></tr><tr><td>出力</td><td>スピーカー・ヘッドホン</td></tr></table>
+        </div>
+      </article>
+      <article class="p">
+        <div class="ph"><img src="img/da1_02.jpg" alt="アンプDA-1のブラックとシルバー"></div>
+        <div class="bd">
+          <div class="top"><h3>DA-1</h3><span class="kind">デジタルアンプ</span></div>
+          <p class="d">スマホより小さな設置面積で、WAONを鳴らし切るアンプ。</p>
+          <table><tr><td>寸法</td><td>W57×H26×D88 mm</td></tr><tr><td>重さ</td><td>約 140 g</td></tr><tr><td>出力</td><td>10 W + 10 W（8Ω）</td></tr></table>
+        </div>
+      </article>
+      <article class="p">
+        <div class="ph"><img src="img/ha11_06.jpg" alt="ヘッドホンアンプHA-11"></div>
+        <div class="bd">
+          <div class="top"><h3>HA-11 / HA-1</h3><span class="kind">ヘッドホンアンプ</span></div>
+          <p class="d">電池で動く、持ち運べるヘッドホンアンプ。</p>
+          <table><tr><td>HA-11</td><td>W65×H26×D120 mm</td></tr><tr><td>HA-1</td><td>W57×H25×D88 mm</td></tr><tr><td>受賞</td><td>HA-11 銘機賞2014</td></tr></table>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 8. reading -->
+<section data-sec="reading" id="s06">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">06</span>
+      <h2><small>Reading</small>読みもの</h2>
+      <p>選ぶ前に知っておきたいことを、短い記事にまとめます。</p>
+    </div>
+    <table class="rd">
+      <tr><td class="n">06.1</td><td class="k"><span>店舗・業務</span></td><td class="ti">店舗のBGMスピーカーの選び方：会話を邪魔しない音とは</td><td class="ar">→</td></tr>
+      <tr><td class="n">06.2</td><td class="k"><span>店舗・業務</span></td><td class="ti">カフェに合うスピーカー：小さくても店内に届く理由</td><td class="ar">→</td></tr>
+      <tr><td class="n">06.3</td><td class="k"><span>ホテル</span></td><td class="ti">ホテルの客室に置くオーディオ：テレビの横に置ける本物の音</td><td class="ar">→</td></tr>
+      <tr><td class="n">06.4</td><td class="k"><span>ご自宅・デスク</span></td><td class="ti">デスクトップオーディオの始め方：スピーカーとアンプだけでいい</td><td class="ar">→</td></tr>
+      <tr><td class="n">06.5</td><td class="k"><span>しくみ</span></td><td class="ti">木製スピーカーの音はなぜ柔らかいのか</td><td class="ar">→</td></tr>
+      <tr><td class="n">06.6</td><td class="k"><span>よくある心配</span></td><td class="ti">小型の真空管アンプは寿命が短い？よくある心配に答えます</td><td class="ar">→</td></tr>
+    </table>
+    <p class="note">掲載内容イメージ（記事の題名は、提案書の案です）</p>
+  </div>
+</section>
+
+<!-- 9. maker -->
+<section data-sec="maker" id="s07">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">07</span>
+      <h2><small>Maker</small>作り手と工房</h2>
+      <p>長野県富士見町。小さな工房で、一台ずつ手で仕上げています。</p>
+    </div>
+    <div class="mk">
+      <div class="ims">
+        <figure><img src="img/about_05.jpg" alt="並べたWAONの箱とアンプ"><figcaption>Fig.07-1　木の箱と、アンプ</figcaption></figure>
+        <figure><img src="img/tsutaya_05.jpg" alt="仕上げを待つWAONの箱"><figcaption>Fig.07-2　仕上げを待つ箱</figcaption></figure>
+        <figure><img src="img/about_02.jpg" alt="真空管とアンプとスピーカー"><figcaption>Fig.07-3　真空管を選ぶ</figcaption></figure>
+      </div>
+      <div>
+        <blockquote>大きく重く複雑なオーディオは、<br>良い音がする…<br>本当でしょうか？</blockquote>
+        <div class="body">
+          <p>MH audioは「シンプルに音楽を楽しむ」ことを大切にしています。見かけの数値ではなく、心にとどく音を追い求めてきました。</p>
+          <p>精密や家具の専門家の力を借りながら、ハンドメイドで作っています。手作りのため、一台ずつ少しずつ表情が違います。</p>
+        </div>
+        <div class="prn">
+          <div><span>P1</span><b>性能と機能</b><p>無意味な豪華さ・大きさ・機能は持たない</p></div>
+          <div><span>P2</span><b>デザイン</b><p>和にも洋にも、家にも仕事場にもなじむ形</p></div>
+          <div><span>P3</span><b>ハンドメイド</b><p>長く使える質感を、一台ずつ手で</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. shops -->
+<section data-sec="shops" id="s08">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">08</span>
+      <h2><small>Where to listen</small>取扱店・ふるさと納税</h2>
+      <p>実物の大きさと音を、お店で確かめられます。</p>
+    </div>
+    <div class="sp">
+      <div class="box">
+        <h3>取扱店<span>DEALERS</span></h3>
+        <ul class="shl">
+          <li><span>08.1</span>銀座 山野楽器 本店<em>東京・銀座</em></li>
+          <li><span>08.2</span>代官山蔦屋書店<em>東京・代官山</em></li>
+          <li><span>08.3</span>二子玉川 蔦屋家電<em>東京・二子玉川</em></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>ふるさと納税<span>HOMETOWN TAX</span></h3>
+        <ul class="shl">
+          <li><span>08.4</span>長野県岡谷市<em>返礼品</em></li>
+          <li><span>08.5</span>長野県富士見町<em>返礼品</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. contact -->
+<section data-sec="contact" id="s09">
+  <div class="wrap sec">
+    <div class="sh">
+      <span class="no">09</span>
+      <h2><small>Contact</small>まずはご相談ください</h2>
+      <p>置く場所と使い方をうかがってから、合う組み合わせをご提案します。</p>
+    </div>
+    <div class="ct">
+      <div>
+        <p class="intro">お部屋の広さや、置きたい場所を<br>メールでお知らせください。</p>
+        <div class="steps">
+          <div><span>01</span><div><b>メールでご相談</b><p>右のフォームから、使う場所とご希望をお送りください。</p></div></div>
+          <div><span>02</span><div><b>やり取りで決める</b><p>広さ・置き方・つなぐ機器をうかがい、組み合わせをご提案します。</p></div></div>
+          <div><span>03</span><div><b>お届け</b><p>ご納得いただいてから、お届けの手配をします。</p></div></div>
+        </div>
+      </div>
+      <form onsubmit="return false">
+        <div class="f"><label>使う場所</label>
+          <div class="radios"><label><input type="radio" name="use" checked>店舗・ホテル</label><label><input type="radio" name="use">ご自宅・デスク</label></div>
+        </div>
+        <div class="f"><label for="n">お名前</label><input id="n" type="text"></div>
+        <div class="f"><label for="m">メールアドレス</label><input id="m" type="email"></div>
+        <div class="f"><label for="b">ご相談の内容（広さ・置きたい場所など）</label><textarea id="b"></textarea></div>
+        <button class="btn solid" type="submit">相談内容を送る <span class="ar">→</span></button>
+        <small>星野からメールでお返事します。</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 12. footer -->
+<footer data-sec="footer">
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <div class="logo">MH audio</div>
+        <p>世界最小の本格オーディオ<br>長野県富士見町</p>
+      </div>
+      <nav class="ftl">
+        <a href="#s01"><span>01</span>入口</a><a href="#s02"><span>02</span>選ばれる理由</a><a href="#s03"><span>03</span>お客様の事例</a>
+        <a href="#s04"><span>04</span>評価・実績</a><a href="#s05"><span>05</span>製品と寸法</a><a href="#s06"><span>06</span>読みもの</a>
+        <a href="#s07"><span>07</span>作り手と工房</a><a href="#s08"><span>08</span>取扱店</a><a href="#s09"><span>09</span>ご相談</a>
+      </nav>
+    </div>
+    <p class="copy">© MH audio — Simple Audio, Deep Listening</p>
+  </div>
+</footer>
+
+<div class="demo">デザイン提案（株式会社hoshimi）／実際のサイトではありません</div>
+</body>
+</html>
